@@ -28,7 +28,10 @@ public class MyTryTurret : MonoBehaviour
         {
             GetLookAtTarget();
             shootFromTurret.TargetSeek(_target.transform);
+            shootFromTurret._canTurretShoot = true;
+            return;
         }
+        shootFromTurret._canTurretShoot = false;
     }
 
     //private void OnTriggerEnter(Collider _enemy)
