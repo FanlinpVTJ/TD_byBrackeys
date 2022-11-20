@@ -6383,7 +6383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 8128454814118356809, guid: a59ffaa7f16ab6246b53b5082c6d482e, type: 3}
   _spawnPoint: {fileID: 373146279}
-  _timeBetweenWave: 2000
+  _timeBetweenWave: 5
   _spwanerEnable: 1
   _textWaveIndex: 0
   _textSpawnTime: 
@@ -6428,7 +6428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8cde0c7d833b54a8adc812b1700cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMoney: 2000
+  _startMoney: 20000
   _startLives: 20
 --- !u!114 &522445309
 MonoBehaviour:

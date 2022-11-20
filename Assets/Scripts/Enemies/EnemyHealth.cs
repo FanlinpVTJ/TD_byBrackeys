@@ -6,22 +6,22 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private int _maxEnemyHealth = 100;
+    [SerializeField] private float _maxEnemyHealth = 100;
     [SerializeField] private int _costForEnemyDestroy = 10;
     [SerializeField] private Image _hpBar;
     [SerializeField] private GameObject _enemyDeathEffectPrefab;
 
-    private int _currentEnemyHealth;
+    private float _currentEnemyHealth;
 
     private void Start()
     {
         _currentEnemyHealth = _maxEnemyHealth;
     }
 
-    public void DealDamage(int _bulletDamage)
+    public void DealDamage(float _bulletDamage)
     {
         _currentEnemyHealth -= _bulletDamage;
-        _hpBar.fillAmount = (float)_currentEnemyHealth / _maxEnemyHealth;
+        _hpBar.fillAmount = _currentEnemyHealth / _maxEnemyHealth;
         if (_currentEnemyHealth <= 0)
         {
             EnemyDie();

@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class MyTryTurret : MonoBehaviour
+public class Turret : MonoBehaviour
 {
     [SerializeField] private Transform _partToRotate;
     [SerializeField] private string _tagToFind = "Enemy";
@@ -14,7 +14,8 @@ public class MyTryTurret : MonoBehaviour
     [SerializeField] private float _speedRotationOfTurret = 15f;
     
     private ShootFromTurret shootFromTurret;
-    private Transform _target;
+    private GameObject _target;
+    private EnemyHealth _targetEnemyHealth;
     //private HashSet<GameObject> _targets = new HashSet<GameObject>();
 
     private void Start()
@@ -27,7 +28,7 @@ public class MyTryTurret : MonoBehaviour
         if (_target != null)
         {
             GetLookAtTarget();
-            shootFromTurret.TargetSeek(_target.transform);
+            shootFromTurret.TargetSeek(_target);
             shootFromTurret._canTurretShoot = true;
             return;
         }
@@ -61,7 +62,7 @@ public class MyTryTurret : MonoBehaviour
     //}
     private void GetLookAtTarget()
     {
-        var _targetRotation = Quaternion.LookRotation(_target.position - _partToRotate.position);
+        var _targetRotation = Quaternion.LookRotation(_target.transform.position - _partToRotate.position);
         Quaternion _yrotationTurret = new Quaternion(0, _partToRotate.rotation.y, 0, _partToRotate.rotation.w);
         Quaternion _yTargetRotation = new Quaternion(0, _targetRotation.y, 0, _targetRotation.w);
         _partToRotate.rotation = Quaternion.Slerp(_yrotationTurret, _yTargetRotation, _speedRotationOfTurret * Time.deltaTime);
@@ -85,7 +86,7 @@ public class MyTryTurret : MonoBehaviour
             }
             if (_nearestEnemy != null && _shortestDistance <= _turretFireRange)
             {
-                _target = _nearestEnemy.transform;
+                _target = _nearestEnemy.gameObject;
             }
             else
             {
