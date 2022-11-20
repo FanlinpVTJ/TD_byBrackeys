@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -170,7 +170,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 5
-      minScalar: 0
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -285,8 +285,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.3
-      minScalar: 0.15
+      scalar: 0.5
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -608,7 +608,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.25
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -662,13 +662,13 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 22.4
+    angle: 60
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: 0, y: 180, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -977,8 +977,8 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 30
-        minScalar: 20
+        scalar: 50
+        minScalar: 40
         maxCurve:
           serializedVersion: 2
           m_Curve:
@@ -1050,13 +1050,22 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.99627686
-          value: 0.16216278
-          inSlope: -0.95338225
-          outSlope: -0.95338225
+          time: 0.47100234
+          value: 0.6105279
+          inSlope: -1.9423639
+          outSlope: -1.9423639
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.09105412
+          inWeight: 0.33333334
+          outWeight: 0.09470406
+        - serializedVersion: 3
+          time: 0.99627686
+          value: 0.16216278
+          inSlope: -0.006558685
+          outSlope: -0.006558685
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.27196488
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -3670,7 +3679,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
     type: 1
     collisionMode: 0
@@ -3871,7 +3880,7 @@ ParticleSystem:
       emitProbability: 1
   LightsModule:
     enabled: 0
-    ratio: 0
+    ratio: 1
     light: {fileID: 0}
     randomDistribution: 1
     color: 1
@@ -4819,7 +4828,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 86fc4f0383f15ac41a2106353299c624, type: 2}
+  - {fileID: 2100000, guid: e299baaeb3243074086b16c7bc095da3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
