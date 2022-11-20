@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: найс, выглядит неплохо
+// название +
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private float _panSpeed = 30f;
-    [SerializeField] private float _panBorderThikness = 10f;
+    [SerializeField] private float _panBorderThikness = 10f; // TODO: ...Thickness - просто орфография, но я же должен до чего-то доебаться
     [SerializeField] private float _scrollSpeed = 2f;
     [SerializeField] private float _maxYScroll = 80f;
     [SerializeField] private float _minYScroll = 10f;
@@ -15,11 +17,13 @@ public class CameraController : MonoBehaviour
     private bool _cameraReturnToStart = false;
     private Vector3 _cameraStartPosition;
         
+    // TODO: private
     void Start()
     {
         _cameraStartPosition = transform.position;
     }
 
+    // TODO: private
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && !_cameraMovementEnabled)
@@ -39,6 +43,8 @@ public class CameraController : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, _cameraStartPosition, 0.1f);
         }
 
+        // TODO: можно было бы вынести Translate за пределы if-ов, в конец, а в ифах только
+        // moveDelta += Vector3.left или right и тд
         if (_cameraMovementEnabled)
         {
             if (Input.GetKey(KeyCode.W) || Input.mousePosition.y >= Screen.height - _panBorderThikness)

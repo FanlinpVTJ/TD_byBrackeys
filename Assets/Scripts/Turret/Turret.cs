@@ -35,6 +35,9 @@ public class Turret : MonoBehaviour
         shootFromTurret._canTurretShoot = false;
     }
 
+    // TODO: если приучишь себя пользоваться гитом - не нужно будет оставлять закомменченный код
+    // фуки-фу
+    
     //private void OnTriggerEnter(Collider _enemy)
     //{
     //    if (_enemy.tag == "Enemy" && _onTrigerExitPermition)
@@ -68,12 +71,18 @@ public class Turret : MonoBehaviour
         _partToRotate.rotation = Quaternion.Slerp(_yrotationTurret, _yTargetRotation, _speedRotationOfTurret * Time.deltaTime);
     }
 
+    // TODO: а вот это как раз можно было в апдейте сделать)
+    // оно непрерывное, у этого нет окончания
+    // хотя судя по WaitForSeconds(0.2f), я так понимаю, тут такая задумка, что не каждый кадр проверки?
+    // или это чтоб не лагало от поиска по тегу?))
     private IEnumerator TargetingEnemy()
     {
         while (true)
         {
             GameObject _nearestEnemy = null;
             var _shortestDistance = _turretFireRange;
+            
+            // TODO: оу май, поиск по тэгу))
             GameObject[] _targets = GameObject.FindGameObjectsWithTag(_tagToFind);
             foreach (var enemy in _targets)
             {
@@ -92,6 +101,8 @@ public class Turret : MonoBehaviour
             {
                 _target = null;
             }
+            
+            // Ну и если в апдейте, то это тут не надо
             yield return new WaitForSeconds(0.2f);
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// TODO: И тут то же самое
 public class TEXT_WavesIndex : MonoBehaviour
 {
     [SerializeField] WaveSpawner waveSpawner;
