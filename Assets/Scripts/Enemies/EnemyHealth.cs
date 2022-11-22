@@ -32,7 +32,7 @@ public class EnemyHealth : MonoBehaviour
     {
         GameObject _enemyDeathEffect = Instantiate(_enemyDeathEffectPrefab, transform.position, Quaternion.identity);
         Destroy(_enemyDeathEffect, 1f);
-        PlayerStats._wallet += _costForEnemyDestroy;
+        PlayerStats.wallet += _costForEnemyDestroy;
         Destroy(gameObject);
     }
 }

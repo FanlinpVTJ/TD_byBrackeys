@@ -10,7 +10,7 @@ public class NodeSelectionBuild : MonoBehaviour
     [SerializeField] private Color _notEnoughtMoneyColor;
 
     [Header("Optional")]
-    public GameObject _turret;
+    public GameObject turret;
     private Color _startColor;
     private Renderer _renderer;
 
@@ -35,7 +35,6 @@ public class NodeSelectionBuild : MonoBehaviour
             _renderer.material.color = _notEnoughtMoneyColor;
         }
     }
-    
         
     private void OnMouseExit()
     {
@@ -43,13 +42,16 @@ public class NodeSelectionBuild : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (!BuildingManager.instance._canBuild)
+        if (EventSystem.current.IsPointerOverGameObject())
             return;
-        if (_turret != null)
+        
+        if (turret != null)
         {
-            Destroy(_turret.gameObject);
+            BuildingManager.instance.SelectNode(this);
             return;
         }
+        if (!BuildingManager.instance._canBuild)
+            return;
         BuildingManager.instance.BuildTurretOn(this);
     }
  }

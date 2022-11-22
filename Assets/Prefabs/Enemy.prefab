@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd87cffba19494429a16fe30291a874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
+  _maxSpeed: 30
 --- !u!54 &484799945330297401
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -410,5 +410,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxEnemyHealth: 100
+  _costForEnemyDestroy: 10
   _hpBar: {fileID: 7280036700295861987}
   _enemyDeathEffectPrefab: {fileID: 7760425206212207444, guid: 2602b54206bb942418050a66515df2c1, type: 3}

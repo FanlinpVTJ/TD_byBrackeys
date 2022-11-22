@@ -5,13 +5,17 @@ using UnityEngine;
 
 public class GameMain : MonoBehaviour
 {
-    private bool _gameEnded = false;
-
+    public static bool _gameOver {get; private set;}
+    private void Start()
+    {
+        _gameOver = false;
+        Time.timeScale = 1.0f;
+    }
     void Update()
     {
-        if (_gameEnded)
+        if (_gameOver)
             return;
-
+      
         if (PlayerStats._liveCount <= 0) 
         {
             EndGame();
@@ -20,7 +24,8 @@ public class GameMain : MonoBehaviour
  
     private void EndGame()
     {
-        Debug.Log("End");
-        _gameEnded=true;
+        Time.timeScale = 0f;
+        Debug.Log("nen");
+        _gameOver = true;
     }
 }

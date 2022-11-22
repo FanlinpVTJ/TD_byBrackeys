@@ -11,6 +11,6 @@ public class TEXT_Money : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _currentPlayerMoney.text = "$" + PlayerStats._wallet.ToString();
+        _currentPlayerMoney.text = "$" + PlayerStats.wallet.ToString();
     }
 }
