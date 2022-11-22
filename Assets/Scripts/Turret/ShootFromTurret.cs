@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: нэйминг почти одобряю, по крайней мере по нему понятно, что он делает, это гуд
+// но классы обычно называют существительными: 
+// напр TurretShootController, хотя контроллерами тоже не стоит увлекаться
+// TurretWeapon, например, тоже подойдет
+// но то, что я сразу понял по названию, что оно делает - это прям збс, это важнее, чем существительные
+// если не придумывается логичное существительное - похер, пиши, чтоб понятно было, что оно делает
 public class ShootFromTurret : MonoBehaviour
 {
     [SerializeField] private Transform[] _firePointTransform;
@@ -45,6 +51,7 @@ public class ShootFromTurret : MonoBehaviour
         }
     }
 
+    // TODO: забыл private
     void Update()
     {
         if (_fireCountdown <= 0)
@@ -53,6 +60,7 @@ public class ShootFromTurret : MonoBehaviour
         }
         _fireCountdown -= Time.deltaTime;
 
+        // TODO: хехе ООП такое: да, да, пошел я нахер
         if (_useLaser && _canTurretShoot)
         {
             DoLaserDamage();
@@ -60,6 +68,7 @@ public class ShootFromTurret : MonoBehaviour
         }
     }
 
+    // TODO: а методы - это обычно глагол: SeekTarget
     public void TargetSeek(GameObject _target)
     {
         this._target = _target;
@@ -72,6 +81,9 @@ public class ShootFromTurret : MonoBehaviour
     {
         while (true)
         {
+            // TODO: почему нельзя было вызывать LaserShoot оттуда, где меняется _canTurrentShoot?
+            // можно было бы убрать while и этот if, тогда корутина была бы конечным действием,
+            // которое вызывается в определенный момент
             if (_canTurretShoot)
             {
                 _lineRenderer.enabled = true;
@@ -80,6 +92,8 @@ public class ShootFromTurret : MonoBehaviour
                 //Траим костыли
                 try
                 {
+                    // TODO: ух, try-catch тоже не оч хорошо на перфоманс действует, но это не так плохо, фиг с ним
+                    // вообще какого хрена?) зачем оно тут?
                     _lineRenderer.SetPosition(1, _currentTargetTransform.position);
 
                     Vector3 _damageEffectDirection = _firePointTransform[0].position -
@@ -93,7 +107,15 @@ public class ShootFromTurret : MonoBehaviour
 
 
                 }
-                catch (Exception)
+                catch (Exception) 
+                    // TODO: ты ловишь вообще все эксепшны, значит никогда не узнаешь ни о каких ошибках
+                // это приведет к Undefined Behavior, когда оно почему-то делает какую-то херню и ни ошибок и нифига
+                // и тебе придется ооочень долго разбираться, что тут пошло не так
+                // если у тебя конкретные ексепшны происходят и ты только от них хочешь ихбавиться - ты можешь написать так
+                // catch (NullReferenceException)
+                // ловиться будут только нулрефы, остальное все еще будет ексепшнами
+                // блоков catch может быть несколько
+                // но вообще try-catch обычно юзают в крайних случаях
                 {
                     _laserDamageLightEffect.enabled = false;
                     _laserDamageEffect.Stop();
@@ -129,10 +151,17 @@ public class ShootFromTurret : MonoBehaviour
     {
         while (true) 
         {
+            // TODO: почему нельзя было вызывать просто эту корутину, когда countdown < 0 там, где он собсно и меняется?
+            // зачем тут эта проверка и бесконечный while?
+            // получатся тот же апдейт, только ты его в корутину запихал
             if (_fireCountdown <= 0 && _canTurretShoot) 
             {
+                // В твоей отдельной корутине было бы только то, что внутри этого if
+                
+                // TODO: без _
                 foreach (var _firePointTransform in _firePointTransform)
                 {
+                    // TODO: без _
                     GameObject _bulletGameObject = Instantiate(_bullet, _firePointTransform);
                     BulletBehaviour _bulletBehaviour = _bulletGameObject.GetComponent<BulletBehaviour>();
                     if (_bulletBehaviour != null)

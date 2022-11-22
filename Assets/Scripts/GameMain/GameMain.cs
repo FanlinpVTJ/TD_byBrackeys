@@ -3,29 +3,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Название пойдет, по крайней мере понятное, это ок
 public class GameMain : MonoBehaviour
 {
-    public static bool _gameOver {get; private set;}
-    private void Start()
-    {
-        _gameOver = false;
-        Time.timeScale = 1.0f;
-    }
+    private bool _gameEnded = false;
+
+    // TODO: аааааааааа жуть какая
+    // TODO: private забыл
     void Update()
     {
-        if (_gameOver)
+        if (_gameEnded)
             return;
-      
+
         if (PlayerStats._liveCount <= 0) 
         {
             EndGame();
         }
     }
+
+    // TODO: красивше же?
+    // ждать, пока кол-во жизней больше нуля, потом закончить игру
+    
+    // TODO: вот тут после () => - это лямбда-выражение,
+    // оно будет вызываться каждый кадр, чтобы проверять условие
+    // по сути это то же самое, что и у тебя в апдейте, только в 1 строчку
+    
+    // TODO: есть еще WaitUntil, он работает наоборот: ждать, пока жизни не станут <= 0
+    // yield return new WaitUntil(() => PlayerStats._liveCount <= 0);
+    private IEnumerator GameLoop()
+    {
+        yield return new WaitWhile(() => PlayerStats._liveCount > 0);
+        EndGame();
+    }
  
     private void EndGame()
     {
-        Time.timeScale = 0f;
-        Debug.Log("nen");
-        _gameOver = true;
+        Debug.Log("End");
+        _gameEnded=true; // TODO: пробелы вокруг = ))
     }
 }

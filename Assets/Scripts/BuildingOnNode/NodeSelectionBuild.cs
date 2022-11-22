@@ -4,16 +4,18 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+// TODO: наверное это TurretBuilder или TurretBuildInput или типа того
 public class NodeSelectionBuild : MonoBehaviour
 {
     [SerializeField] private Color _hoverColor;
     [SerializeField] private Color _notEnoughtMoneyColor;
 
     [Header("Optional")]
-    public GameObject turret;
+    public GameObject _turret; // TODO: публичное PascalCase, сделать свойство { get; set; }, почему Optional?
     private Color _startColor;
     private Renderer _renderer;
 
+    // TODO: private забыл
     void Start()
     {
         _renderer = GetComponent<Renderer>();
@@ -35,6 +37,7 @@ public class NodeSelectionBuild : MonoBehaviour
             _renderer.material.color = _notEnoughtMoneyColor;
         }
     }
+    
         
     private void OnMouseExit()
     {
@@ -42,16 +45,13 @@ public class NodeSelectionBuild : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
-            return;
-        
-        if (turret != null)
-        {
-            BuildingManager.instance.SelectNode(this);
-            return;
-        }
         if (!BuildingManager.instance._canBuild)
             return;
+        if (_turret != null)
+        {
+            Destroy(_turret.gameObject);
+            return;
+        }
         BuildingManager.instance.BuildTurretOn(this);
     }
  }
