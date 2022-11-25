@@ -1425,7 +1425,7 @@ GameObject:
   - component: {fileID: 131787848}
   - component: {fileID: 131787847}
   m_Layer: 5
-  m_Name: Text_SpawnTime_Label
+  m_Name: TextSpawnTimeLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1859,7 +1859,7 @@ GameObject:
   - component: {fileID: 163070024}
   - component: {fileID: 163070023}
   m_Layer: 5
-  m_Name: Missle_Launcher_lvl_2
+  m_Name: MissleLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1952,8 +1952,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1428736277}
-        m_TargetAssemblyTypeName: ShopMain, Assembly-CSharp
-        m_MethodName: SelectMissle_Launcher_lvl_2t
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: SelectTurretMissleLauncher
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2663,7 +2663,7 @@ GameObject:
   - component: {fileID: 219319016}
   - component: {fileID: 219319015}
   m_Layer: 5
-  m_Name: Text_SpawnTime
+  m_Name: TextSpawnTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5746,7 +5746,7 @@ GameObject:
   - component: {fileID: 452224951}
   - component: {fileID: 452224950}
   m_Layer: 5
-  m_Name: LVL2_Turret_Cost
+  m_Name: TurretLvl2Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6800,12 +6800,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad6940d29b6db144af8a0da5cc9e831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 8128454814118356809, guid: a59ffaa7f16ab6246b53b5082c6d482e, type: 3}
-  _spawnPoint: {fileID: 373146279}
-  _timeBetweenWave: 1
-  _spwanerEnable: 1
-  _textWaveIndex: 0
-  _textSpawnTime: 
+  enemyPrefab: {fileID: 8128454814118356809, guid: a59ffaa7f16ab6246b53b5082c6d482e, type: 3}
+  spawnPoint: {fileID: 373146279}
+  waypoints: {fileID: 885796705}
+  playerStats: {fileID: 522445308}
+  timeBetweenWave: 10.5
+  spwanerEnable: 1
+  textWaveIndex: 1
+  textSpawnTime: 
 --- !u!4 &522445306
 Transform:
   m_ObjectHideFlags: 0
@@ -6833,9 +6835,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9bf63778c587c64286a85ef60bfd2bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _turretOnNodeOffset: {x: 0, y: 0.5, z: 0}
-  _buitldEffectPrefab: {fileID: 691359938725747253, guid: 882732a252e9cdd44af58c07999a414b, type: 3}
-  nodeUI: {fileID: 0}
+  turretOnNodeOffset: {x: 0, y: 0.5, z: 0}
+  buildEffectPrefab: {fileID: 691359938725747253, guid: 882732a252e9cdd44af58c07999a414b, type: 3}
 --- !u!114 &522445308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6848,8 +6849,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8cde0c7d833b54a8adc812b1700cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMoney: 20000
-  _startLives: 1
+  startMoney: 99999
+  startLives: 10
 --- !u!114 &522445309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6875,8 +6876,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveSpawner: {fileID: 522445305}
-  _gameOverUI: {fileID: 1140690752}
-  _gameOverText: {fileID: 1061040204}
+  gameOverUI: {fileID: 1140690752}
+  gameOverWavesCountText: {fileID: 1061040204}
 --- !u!1 &531987437
 GameObject:
   m_ObjectHideFlags: 0
@@ -6889,8 +6890,6 @@ GameObject:
   - component: {fileID: 531987440}
   - component: {fileID: 531987439}
   - component: {fileID: 531987438}
-  - component: {fileID: 531987442}
-  - component: {fileID: 531987443}
   m_Layer: 5
   m_Name: UI_OnBoard
   m_TagString: Untagged
@@ -6982,32 +6981,6 @@ RectTransform:
   m_AnchoredPosition: {x: -33.75, y: 0}
   m_SizeDelta: {x: 2800, y: 2000}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &531987442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 531987437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cdf92b4363923e42ae7d9ddb13e6afe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentPlayerMoney: {fileID: 1658759238}
---- !u!114 &531987443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 531987437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d2699a9643acf4ba56afe99dbf53ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentPlayerLives: {fileID: 704552391}
 --- !u!1001 &553192169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8346,7 +8319,7 @@ GameObject:
   - component: {fileID: 704552392}
   - component: {fileID: 704552391}
   m_Layer: 5
-  m_Name: TEXT_LivesCount
+  m_Name: TextLivesCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8483,7 +8456,7 @@ GameObject:
   - component: {fileID: 711982666}
   - component: {fileID: 711982665}
   m_Layer: 5
-  m_Name: LVL3_Turret_Cost
+  m_Name: TurretLvl3Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9620,7 +9593,7 @@ GameObject:
   - component: {fileID: 783943010}
   - component: {fileID: 783943009}
   m_Layer: 5
-  m_Name: LVL1_Turret
+  m_Name: TurretLvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9713,8 +9686,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1428736277}
-        m_TargetAssemblyTypeName: ShopMain, Assembly-CSharp
-        m_MethodName: SelectLVL1_Turret
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: SelectTurretLvl1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9924,7 +9897,7 @@ GameObject:
   - component: {fileID: 820798861}
   - component: {fileID: 820798864}
   m_Layer: 5
-  m_Name: Retry_Button
+  m_Name: RetryButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10069,7 +10042,7 @@ GameObject:
   - component: {fileID: 823012560}
   - component: {fileID: 823012559}
   m_Layer: 5
-  m_Name: TEXT_Lives
+  m_Name: TextLivesLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10593,7 +10566,7 @@ RectTransform:
   - {fileID: 1428736273}
   - {fileID: 1140690753}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -10609,9 +10582,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 848229178}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50600b337ee1deb4683e35ccaa802a1f, type: 3}
+  m_Script: {fileID: 11500000, guid: 74d2699a9643acf4ba56afe99dbf53ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 522445308}
+  currentPlayerMoney: {fileID: 1658759238}
+  currentPlayerLives: {fileID: 704552391}
   waveSpawner: {fileID: 522445305}
   _wavesIndexText: {fileID: 1189507825}
   _wavesSpawnTime: {fileID: 219319015}
@@ -12187,12 +12163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076d2aec6181b6341abaa6a1b7f073ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panSpeed: 30
-  _panBorderThikness: 10
-  _cameraReturnTime: 1
-  _scrollSpeed: 2
-  _maxYScroll: 80
-  _minYScroll: 10
+  panSpeed: 30
+  "panBorderThi\u0441kness": 10
+  scrollSpeed: 2
+  maxYScroll: 80
+  minYScroll: 10
 --- !u!1001 &966876328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12664,7 +12639,7 @@ GameObject:
   - component: {fileID: 1013003429}
   - component: {fileID: 1013003428}
   m_Layer: 5
-  m_Name: Missle_Launcher_lvl_2_Cost
+  m_Name: LaserTurretCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13290,7 +13265,7 @@ GameObject:
   - component: {fileID: 1085342962}
   - component: {fileID: 1085342961}
   m_Layer: 5
-  m_Name: Missle_Launcher_lvl_2_Cost
+  m_Name: MissleLauncherCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14501,7 +14476,7 @@ GameObject:
   - component: {fileID: 1189507826}
   - component: {fileID: 1189507825}
   m_Layer: 5
-  m_Name: Text_WaveIndex
+  m_Name: TextWaveIndex
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17583,21 +17558,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _turretsBlueprints:
-  - prefab: {fileID: 3023623930772034328, guid: b8f082d5cb0fec54bb7bac9eaef60054, type: 3}
-    cost: 100
-  - prefab: {fileID: 5648195971712949721, guid: 87ad2d2994f706d4d9d91002a2d70dd8, type: 3}
-    cost: 200
-  - prefab: {fileID: 2514446244179388969, guid: fe5401c1dd7932844a13943c9134a2eb, type: 3}
-    cost: 300
-  - prefab: {fileID: 2157671470003670258, guid: 7deb7c88b12dcaf4f93235d6480eed06, type: 3}
-    cost: 400
-  - prefab: {fileID: 3775598704784854990, guid: 7c706ef20cdbe8741b64d6a30d11808e, type: 3}
-    cost: 300
+  - Prefab: {fileID: 3023623930772034328, guid: b8f082d5cb0fec54bb7bac9eaef60054, type: 3}
+    Cost: 100
+  - Prefab: {fileID: 5648195971712949721, guid: 87ad2d2994f706d4d9d91002a2d70dd8, type: 3}
+    Cost: 200
+  - Prefab: {fileID: 2514446244179388969, guid: fe5401c1dd7932844a13943c9134a2eb, type: 3}
+    Cost: 300
+  - Prefab: {fileID: 2157671470003670258, guid: 7deb7c88b12dcaf4f93235d6480eed06, type: 3}
+    Cost: 400
+  - Prefab: {fileID: 3775598704784854990, guid: 7c706ef20cdbe8741b64d6a30d11808e, type: 3}
+    Cost: 400
   _turretsCost:
   - {fileID: 2117224829}
   - {fileID: 452224950}
   - {fileID: 711982665}
   - {fileID: 1085342961}
+  - {fileID: 1013003428}
 --- !u!1001 &1445985919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17752,7 +17728,7 @@ GameObject:
   - component: {fileID: 1463180571}
   - component: {fileID: 1463180570}
   m_Layer: 5
-  m_Name: LVL2_Turret
+  m_Name: TurretLvl2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17845,8 +17821,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1428736277}
-        m_TargetAssemblyTypeName: ShopMain, Assembly-CSharp
-        m_MethodName: SelectLVL2_Turret
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: SelectTurretLvl2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19207,7 +19183,7 @@ Transform:
   - {fileID: 742293381}
   - {fileID: 475037301}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &1597765388
 PrefabInstance:
@@ -19509,7 +19485,7 @@ GameObject:
   - component: {fileID: 1609168990}
   - component: {fileID: 1609168989}
   m_Layer: 5
-  m_Name: Text_WaveIndex_Label
+  m_Name: TextWaveIndexLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20429,7 +20405,7 @@ GameObject:
   - component: {fileID: 1658759239}
   - component: {fileID: 1658759238}
   m_Layer: 5
-  m_Name: WalletAmount
+  m_Name: TextPlayerMoney
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20786,7 +20762,7 @@ GameObject:
   - component: {fileID: 1676698734}
   - component: {fileID: 1676698733}
   m_Layer: 5
-  m_Name: TEXT_Waves
+  m_Name: TextWaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20997,7 +20973,7 @@ GameObject:
   - component: {fileID: 1679132162}
   - component: {fileID: 1679132161}
   m_Layer: 5
-  m_Name: LVL3_Turret
+  m_Name: TurretLvl3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21090,8 +21066,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1428736277}
-        m_TargetAssemblyTypeName: ShopMain, Assembly-CSharp
-        m_MethodName: SelectLVL3_Turret
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: SelectTurretLvl3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23691,7 +23667,7 @@ GameObject:
   - component: {fileID: 1871078039}
   - component: {fileID: 1871078042}
   m_Layer: 5
-  m_Name: Menu_Button
+  m_Name: MenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24966,7 +24942,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1428736277}
-        m_TargetAssemblyTypeName: ShopMain, Assembly-CSharp
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: SelectLaserTurret
         m_Mode: 1
         m_Arguments:
@@ -26070,7 +26046,7 @@ GameObject:
   - component: {fileID: 2117224830}
   - component: {fileID: 2117224829}
   m_Layer: 5
-  m_Name: LVL1_Turret_Cost
+  m_Name: TurretLvl1Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

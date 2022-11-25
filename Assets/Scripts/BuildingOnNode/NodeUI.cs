@@ -6,9 +6,9 @@ public class NodeUI : MonoBehaviour
 {
     [SerializeField] GameObject nodeUI;
 
-    private NodeSelectionBuild selectedNode;
+    private TurretBuildInput selectedNode;
 
-    public void SetTarget(NodeSelectionBuild _node)
+    public void SetTarget(TurretBuildInput _node)
     {
         selectedNode = _node;
 

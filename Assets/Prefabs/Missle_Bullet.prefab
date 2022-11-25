@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8817178082873970952}
   - component: {fileID: 7832628200007419670}
-  - component: {fileID: -6217545230540181125}
+  - component: {fileID: -3174941416622079625}
   m_Layer: 0
   m_Name: Missle_Bullet
   m_TagString: Bullet
@@ -48,7 +48,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-6217545230540181125
+--- !u!114 &-3174941416622079625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,13 +57,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 979663359276310948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7cd6c087c8113c488946f3338fc0603, type: 3}
+  m_Script: {fileID: 11500000, guid: 263818af39181b0458d447a9c0cf5319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSpeed: 100
-  _explosionRadius: 10
-  _impactEffect: {fileID: 5022086119803543305, guid: 9c1befd8e140335469afdbef089f3467, type: 3}
-  _bulletDamage: 50
+  impactEffect: {fileID: 5022086119803543305, guid: 9c1befd8e140335469afdbef089f3467, type: 3}
+  bulletSpeed: 0.1
+  bulletDamage: 50
+  explosionRadius: 5
 --- !u!1 &3979424152872469315
 GameObject:
   m_ObjectHideFlags: 0

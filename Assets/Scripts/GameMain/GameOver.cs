@@ -8,19 +8,18 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     [SerializeField] WaveSpawner waveSpawner;
-    [SerializeField] GameObject _gameOverUI;
-    [SerializeField] TextMeshProUGUI _gameOverText;
+    [SerializeField] GameObject gameOverUI;
+    [SerializeField] TextMeshProUGUI gameOverWavesCountText;
+   
     private void Start()
     {
-        _gameOverUI.SetActive(false);
+        gameOverUI.SetActive(false);
     }
-    private void Update()
+    
+    public void GameEnd()
     {
-        if (GameMain._gameOver)
-        {
-            _gameOverText.text = waveSpawner._textWaveIndex.ToString();
-            _gameOverUI.SetActive(true);
-        } 
+        gameOverWavesCountText.text = waveSpawner.textWaveIndex.ToString();
+        gameOverUI.SetActive(true);
     }
 
     public void Retry()

@@ -6,14 +6,14 @@ using UnityEngine;
 // короче если про названия ничего плохого не напишу - значит + 
 public class Waypoints : MonoBehaviour
 {
-    public static Transform[] _points;
+    public Transform[] Points { get; private set; }
 
     private void Awake()
     {
-        _points = new Transform[transform.childCount];
-        for (int i = 0; i < _points.Length; i++)
+        Points = new Transform[transform.childCount];
+        for (int i = 0; i < Points.Length; i++)
         {
-           _points[i] = transform.GetChild(i);
+            Points[i] = transform.GetChild(i);
         }
     }
 }

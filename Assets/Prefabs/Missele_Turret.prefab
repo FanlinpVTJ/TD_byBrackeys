@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 7152320388694009464}
   - component: {fileID: 1148905930992650987}
   - component: {fileID: 5411352885470831195}
+  - component: {fileID: -7618310888096250066}
   m_Layer: 2
   m_Name: Missele_Turret
   m_TagString: Untagged
@@ -267,10 +268,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8959302fb5ed3d24e87d6145c838287e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _partToRotate: {fileID: 7723443209382853786}
-  _turretFireRange: 25
-  _speedRotationOfTurret: 15
+  partToRotate: {fileID: 7723443209382853786}
   _tagToFind: Enemy
+  _turretFireRange: 25
+  speedRotationOfTurret: 15
 --- !u!114 &5411352885470831195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,10 +284,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12db0653d73902a4cb6d8388561a4624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 979663359276310948, guid: de85591c7af1a0b4e8fc01369fe93fc5, type: 3}
-  _firePointTransform:
+  firePointTransform:
   - {fileID: 3627692204219734518}
-  _fireRate: 5
+--- !u!114 &-7618310888096250066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2157671470003670258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70681730dfa977d4c85c95b597e054e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 979663359276310948, guid: de85591c7af1a0b4e8fc01369fe93fc5, type: 3}
+  fireRate: 2
 --- !u!1 &3976510073009893832
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,67 +7,68 @@ using UnityEngine;
 // название +
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private float _panSpeed = 30f;
-    [SerializeField] private float _panBorderThikness = 10f; // TODO: ...Thickness - просто орфография, но я же должен до чего-то доебаться
-    [SerializeField] private float _scrollSpeed = 2f;
-    [SerializeField] private float _maxYScroll = 80f;
-    [SerializeField] private float _minYScroll = 10f;
+    [SerializeField] private float panSpeed = 30f;
+    [SerializeField] private float panBorderThiсkness = 10f; // TODO: ...Thickness - просто орфография, но я же должен до чего-то доебаться
+    [SerializeField] private float scrollSpeed = 2f;
+    [SerializeField] private float maxYScroll = 80f;
+    [SerializeField] private float minYScroll = 10f;
 
-    private bool _cameraMovementEnabled = false;
-    private bool _cameraReturnToStart = false;
-    private Vector3 _cameraStartPosition;
+    private bool isCameraMovementEnabled = false;
+    private bool hasCameraReturnToStart = false;
+    private Vector3 cameraStartPosition;
         
     // TODO: private
-    void Start()
+    private void Start()
     {
-        _cameraStartPosition = transform.position;
+        cameraStartPosition = transform.position;
     }
 
     // TODO: private
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !_cameraMovementEnabled)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isCameraMovementEnabled)
         {
-            _cameraMovementEnabled = true;
-            _cameraReturnToStart = false;
+            isCameraMovementEnabled = true;
+            hasCameraReturnToStart = false;
             
         }
-        else if (Input.GetKeyDown(KeyCode.LeftShift) && _cameraMovementEnabled)
+        else if (Input.GetKeyDown(KeyCode.LeftShift) && isCameraMovementEnabled)
         {
-            _cameraMovementEnabled = false;
-            _cameraReturnToStart = true;
+            isCameraMovementEnabled = false;
+            hasCameraReturnToStart = true;
         } 
 
-        if (!_cameraMovementEnabled && _cameraReturnToStart)
+        if (!isCameraMovementEnabled && hasCameraReturnToStart)
         {
-            transform.position = Vector3.Lerp(transform.position, _cameraStartPosition, 0.1f);
+            transform.position = Vector3.Lerp(transform.position, cameraStartPosition, 0.1f);
         }
 
         // TODO: можно было бы вынести Translate за пределы if-ов, в конец, а в ифах только
         // moveDelta += Vector3.left или right и тд
-        if (_cameraMovementEnabled)
+        var moveDelta = Vector3.zero;
+        if (isCameraMovementEnabled)
         {
-            if (Input.GetKey(KeyCode.W) || Input.mousePosition.y >= Screen.height - _panBorderThikness)
+            if (Input.GetKey(KeyCode.W) || Input.mousePosition.y >= Screen.height - panBorderThiсkness)
             {
-                transform.Translate(Vector3.left * _panSpeed * Time.deltaTime, Space.World);
+                moveDelta = Vector3.left * panSpeed;
             }
-            if (Input.GetKey(KeyCode.S) || Input.mousePosition.y <= _panBorderThikness)
+            if (Input.GetKey(KeyCode.S) || Input.mousePosition.y <= panBorderThiсkness)
             {
-                transform.Translate(Vector3.right * _panSpeed * Time.deltaTime, Space.World);
+                moveDelta = Vector3.right * panSpeed;
             }
-            if (Input.GetKey(KeyCode.D) || Input.mousePosition.x >= Screen.width - _panBorderThikness)
+            if (Input.GetKey(KeyCode.D) || Input.mousePosition.x >= Screen.width - panBorderThiсkness)
             {
-                transform.Translate(Vector3.forward * _panSpeed * Time.deltaTime, Space.World);
+                moveDelta = Vector3.forward * panSpeed;
             }
-            if (Input.GetKey(KeyCode.A) || Input.mousePosition.x <= _panBorderThikness)
+            if (Input.GetKey(KeyCode.A) || Input.mousePosition.x <= panBorderThiсkness)
             {
-                transform.Translate(Vector3.back * _panSpeed * Time.deltaTime, Space.World);
+                moveDelta = Vector3.back * panSpeed;
             }
-
+            transform.Translate(moveDelta * Time.deltaTime, Space.World);
             float _scroll = Input.GetAxis("Mouse ScrollWheel");
             Vector3 _currentPosition = transform.position;
-            _currentPosition.y -= _scroll * 1000 * _scrollSpeed * Time.deltaTime;
-            _currentPosition.y = Mathf.Clamp(_currentPosition.y, _minYScroll, _maxYScroll);
+            _currentPosition.y -= _scroll * 1000 * scrollSpeed * Time.deltaTime;
+            _currentPosition.y = Mathf.Clamp(_currentPosition.y, minYScroll, maxYScroll);
             transform.position = _currentPosition;
         }
     }

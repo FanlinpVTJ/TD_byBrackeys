@@ -7,14 +7,14 @@ using UnityEngine;
 // но название в целом хорошо, понятно, что оно делает, можно убрать отсюда HP_,
 // потому что не только же с хп это можно использовать
 // можно положить этот скрипт на что угодно и оно будет смотреть в камеру
-public class HP_LookAtCamera : MonoBehaviour
+public class LookAtCamera : MonoBehaviour
 {
-    [SerializeField] Transform _camPosition;
+    [SerializeField] private Transform _camPosition;
 
     // TODO: забыл private
     // TODO: коммент этот удоляй, мы все знаем, для чего нужен апдейт
     // тут апдейт к месту, все окей
-    // Update is called once per frame
+  
     void Update()
     {
         transform.rotation = Quaternion.LookRotation(_camPosition.position - transform.position);

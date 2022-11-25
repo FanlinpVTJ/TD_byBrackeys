@@ -7,102 +7,93 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Turret : MonoBehaviour
 {
-    [SerializeField] private Transform _partToRotate;
+    [SerializeField] private Transform partToRotate;
     [SerializeField] private string _tagToFind = "Enemy";
-
     [SerializeField] private float _turretFireRange = 15f;
-    [SerializeField] private float _speedRotationOfTurret = 15f;
-    
-    private ShootFromTurret shootFromTurret;
-    private GameObject _target;
-    private EnemyHealth _targetEnemyHealth;
-    //private HashSet<GameObject> _targets = new HashSet<GameObject>();
+    [SerializeField] private float speedRotationOfTurret = 15f;
+   
+    private ITrigger trigger;
+    private UnitHealthSystem targetUnitHealthSystem;
+    private EnemyMovement targetEnemyMovement;
+    private Transform targetTransform;
+    private GameObject target;
 
     private void Start()
     {
-        shootFromTurret = GetComponent<ShootFromTurret>(); 
         StartCoroutine(TargetingEnemy());
+        trigger = GetComponent<ITrigger>();
     }
     private void Update()
     {
-        if (_target != null)
+        if (target != null)
         {
-            GetLookAtTarget();
-            shootFromTurret.TargetSeek(_target);
-            shootFromTurret._canTurretShoot = true;
+            targetUnitHealthSystem = target.GetComponent<UnitHealthSystem>();
+            targetEnemyMovement = target.GetComponent<EnemyMovement>();
+            targetTransform = target.GetComponent<Transform>();
+            StartCoroutine(PullTrigger());
+            LookAtTarget();
             return;
         }
-        shootFromTurret._canTurretShoot = false;
+        else
+        {
+            ReleaseTrigger();
+        }
+    }
+    private IEnumerator PullTrigger()
+    {
+        yield return null;
+        if (targetTransform != null && targetUnitHealthSystem != null && targetEnemyMovement != null)
+        {
+            trigger.Shoot(targetTransform, targetUnitHealthSystem, targetEnemyMovement);
+        }
     }
 
-    // TODO: если приучишь себя пользоваться гитом - не нужно будет оставлять закомменченный код
-    // фуки-фу
-    
-    //private void OnTriggerEnter(Collider _enemy)
-    //{
-    //    if (_enemy.tag == "Enemy" && _onTrigerExitPermition)
-    //    {
-    //        foreach (var item in _targets)
-    //        {
-    //            if (_enemy.gameObject.GetHashCode() == item.gameObject.GetHashCode())
-    //            {
-    //                break;
-    //            }
-    //        }
-    //        _targets.Add(_enemy.gameObject);
-    //    }
-    //}
-    //private void OnTriggerExit(Collider _enemy)
-    //{
-    //    for (int i = 0; i < 5; i++)
-    //    {
-    //        if (_enemy.tag == "Enemy")
-    //        {
-    //            _targets.Remove(_enemy.gameObject);
-    //            _onTrigerExitPermition = false;
-    //        }
-    //    }
-    //}
-    private void GetLookAtTarget()
+    private void ReleaseTrigger()
     {
-        var _targetRotation = Quaternion.LookRotation(_target.transform.position - _partToRotate.position);
-        Quaternion _yrotationTurret = new Quaternion(0, _partToRotate.rotation.y, 0, _partToRotate.rotation.w);
-        Quaternion _yTargetRotation = new Quaternion(0, _targetRotation.y, 0, _targetRotation.w);
-        _partToRotate.rotation = Quaternion.Slerp(_yrotationTurret, _yTargetRotation, _speedRotationOfTurret * Time.deltaTime);
+        trigger.StopShoot();
+    }
+
+    private void LookAtTarget()
+    {
+        var targetRotation = Quaternion.LookRotation(target.transform.position - partToRotate.position);
+        Quaternion yrotationTurret = new Quaternion(0, partToRotate.rotation.y, 0, partToRotate.rotation.w);
+        Quaternion yTargetRotation = new Quaternion(0, targetRotation.y, 0, targetRotation.w);
+        partToRotate.rotation = Quaternion.Slerp(yrotationTurret, yTargetRotation, speedRotationOfTurret * Time.deltaTime);
     }
 
     // TODO: а вот это как раз можно было в апдейте сделать)
     // оно непрерывное, у этого нет окончания
     // хотя судя по WaitForSeconds(0.2f), я так понимаю, тут такая задумка, что не каждый кадр проверки?
     // или это чтоб не лагало от поиска по тегу?))
+
+    //Да, шоб не лагало) Эвенты будут следующей иттерацией
     private IEnumerator TargetingEnemy()
     {
         while (true)
         {
             GameObject _nearestEnemy = null;
-            var _shortestDistance = _turretFireRange;
+            var shortestDistance = _turretFireRange;
             
             // TODO: оу май, поиск по тэгу))
-            GameObject[] _targets = GameObject.FindGameObjectsWithTag(_tagToFind);
-            foreach (var enemy in _targets)
+            //Да, нужно строитть систему эвентов для регуляции спавна и смерти, но я пока не владею этим
+            GameObject[] targets = GameObject.FindGameObjectsWithTag(_tagToFind);
+            foreach (var enemy in targets)
             {
                 float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-                if (distanceToEnemy < _shortestDistance)
+                if (distanceToEnemy < shortestDistance)
                 {
-                    _shortestDistance = distanceToEnemy;
+                    shortestDistance = distanceToEnemy;
                     _nearestEnemy = enemy;
                 }
             }
-            if (_nearestEnemy != null && _shortestDistance <= _turretFireRange)
+            if (_nearestEnemy != null && shortestDistance <= _turretFireRange)
             {
-                _target = _nearestEnemy.gameObject;
+                target = _nearestEnemy.gameObject;
             }
             else
             {
-                _target = null;
+                target = null;
             }
-            
-            // Ну и если в апдейте, то это тут не надо
             yield return new WaitForSeconds(0.2f);
         }
     }

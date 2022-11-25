@@ -8,51 +8,36 @@ using UnityEngine;
 // название +, названия методов тоже +
 public class BuildingManager : MonoBehaviour
 {
-    // TODO: а-я-яй
-    // хотя-бы сделай, чтобы нельзя было извне инстанс поменять, чтоли, раз уж синглтон сделал
-    // public static BuildingManager Instance { get; private set; }
-    // private set значит, что только внутри класса можно это поменять
-    //Singleton
-    public static BuildingManager instance; // TODO: публичное PascalCase - Instance (с большой буквы)
-
-    // TODO: сериализованные поля должны лежать выше всех остальных полей и свойств
-    [SerializeField] private Vector3 _turretOnNodeOffset = new Vector3(0, 0.5f, 0);
-    [SerializeField] private GameObject _buitldEffectPrefab;
-
-    private TurretBlueprint _turretToBuild;
-    public bool _canBuild { get { return _turretToBuild != null; } } // TODO: публичное PascalCase
-    public bool _hasMoney { get { return PlayerStats._wallet >= _turretToBuild.cost; } } // TODO: публичное PascalCase
+    [SerializeField] private Vector3 turretOnNodeOffset = new Vector3(0, 0.5f, 0);
+    [SerializeField] private GameObject buildEffectPrefab;
     
-    // TODO: можно вот так было, через стрелочку, чтоб скобочек меньше писать
-    // это когда у тебя есть только get
-    // public bool _canBuild => _turretToBuild != null;
-    // public bool _hasMoney => PlayerStats._wallet >= _turretToBuild.cost;
+    public static BuildingManager Instance { get; private set; }// TODO: публичное PascalCase - Instance (с большой буквы)
+    public bool CanBuild => turretToBuild != null; // TODO: публичное PascalCase
+    public bool HasMoney => PlayerStats.PlayerMoney >= turretToBuild.Cost; // TODO: публичное PascalCase
+
+    private TurretBlueprint turretToBuild;
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
-
-    // TODO: параметры в camelCase turretToBuild
-    public void SelectTurretToBuild(TurretBlueprint _turretToBuild)
+    
+    public void SelectTurretToBuild(TurretBlueprint turretToBuild)
     {
-        this._turretToBuild = _turretToBuild;
+        this.turretToBuild = turretToBuild;
     }
-    public void BuildTurretOn(NodeSelectionBuild node)
+    public void BuildTurretOn(TurretBuildInput node)
     {
-        if(PlayerStats._wallet < _turretToBuild.cost)
+        if(!HasMoney)
         {
-            Debug.Log("no money no honey u tebya" + PlayerStats._wallet); // лол))
             return;
         }
-
-        PlayerStats._wallet -= _turretToBuild.cost; 
-        GameObject turret = Instantiate(_turretToBuild.prefab, node.transform.position + _turretOnNodeOffset, Quaternion.identity);
-        // TODO: локальные переменные тоже camelCase buildEffect
-        GameObject _buitldEffect = Instantiate(_buitldEffectPrefab, node.transform.position + _turretOnNodeOffset, Quaternion.identity);
+        GameObject turret = Instantiate(turretToBuild.Prefab, node.transform.position + turretOnNodeOffset, 
+            Quaternion.identity);
+        GameObject _buitldEffect = Instantiate(buildEffectPrefab, node.transform.position + turretOnNodeOffset, 
+            Quaternion.identity);
         Destroy(_buitldEffect, 2f);
-        node._turret = turret;
-        Debug.Log("Turret build, money left:" + PlayerStats._wallet);
+        node.Turret = turret;
     }
 }
 

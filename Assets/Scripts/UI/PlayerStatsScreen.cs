@@ -17,15 +17,22 @@ using UnityEngine;
 // опять же если б были ивенты на то, что поменялось кол-во жизней, поменялось кол-во денег и поменялся индекс волны
 // можно было бы подпиаться на ивенты и выполнять это всё не в апдейте, а 1 раз, когда оно меняется
 // хер с ним можешь пока сделать статические ивенты, если не забудешь от них отписываться
-public class TEXT_Lives : MonoBehaviour
+public class PlayerStatsScreen : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _currentPlayerLives;
+    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private TextMeshProUGUI currentPlayerMoney;
+    [SerializeField] private TextMeshProUGUI currentPlayerLives;
+    
+    [SerializeField] WaveSpawner waveSpawner;
+    [SerializeField] private TextMeshProUGUI _wavesIndexText;
+    [SerializeField] private TextMeshProUGUI _wavesSpawnTime;
 
-    // TODO: я знаю, что делает апдейт, все знают, правда, я тебе гарантирую)
-    // TODO: private забыл
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        _currentPlayerLives.text = PlayerStats._liveCount.ToString();
+        _wavesIndexText.text = waveSpawner.textWaveIndex.ToString();
+        _wavesSpawnTime.text = waveSpawner.textSpawnTime;
+        //currentPlayerMoney.text = "$" + PlayerStats.PlayerMoney.ToString();
+        //currentPlayerLives.text = PlayerStats.LiveCount.ToString();
     }
+   
 }

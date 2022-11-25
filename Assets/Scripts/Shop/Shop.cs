@@ -5,7 +5,7 @@ using UnityEngine;
 
 // TODO: почему Main?))
 // не советовал бы делать из кнопки вызов метода в редакторе, но в целом пойдет)
-public class ShopMain : MonoBehaviour
+public class Shop : MonoBehaviour
 {
     [SerializeField] private TurretBlueprint[] _turretsBlueprints; 
     [SerializeField] private TextMeshProUGUI[] _turretsCost;
@@ -15,32 +15,32 @@ public class ShopMain : MonoBehaviour
     {
         for (int i = 0; i < _turretsCost.Length; i++)
         {
-            _turretsCost[i].text = "$" + _turretsBlueprints[i].cost.ToString();
+            _turretsCost[i].text = "$" + _turretsBlueprints[i].Cost.ToString();
         }
     }
-    
     // TODO: _ в названиях методов - это уже питон какой-то, не надо так))
     // TODO: LVL можно было написать Lvl, чем капс лучше?
-    public void SelectLVL1_Turret()
+    
+    public void SelectTurretLvl1()
     {
-        BuildingManager.instance.SelectTurretToBuild(_turretsBlueprints[0]);
+        BuildingManager.Instance.SelectTurretToBuild(_turretsBlueprints[0]);
     }
-    public void SelectLVL2_Turret()
+    public void SelectTurretLvl2()
     {
-        BuildingManager.instance.SelectTurretToBuild(_turretsBlueprints[1]);
+        BuildingManager.Instance.SelectTurretToBuild(_turretsBlueprints[1]);
     }
-    public void SelectLVL3_Turret()
+    public void SelectTurretLvl3()
     {
-        BuildingManager.instance.SelectTurretToBuild(_turretsBlueprints[2]);
+        BuildingManager.Instance.SelectTurretToBuild(_turretsBlueprints[2]);
     }
     
     // TODO: что за 2t?
-    public void SelectMissle_Launcher_lvl_2t() // оу бой, прям реально питон почти. по-питонски было бы select_missile_launcher_lvl_2t
+    public void SelectTurretMissleLauncher() // оу бой, прям реально питон почти. по-питонски было бы select_missile_launcher_lvl_2t
     {
-        BuildingManager.instance.SelectTurretToBuild(_turretsBlueprints[3]);
+        BuildingManager.Instance.SelectTurretToBuild(_turretsBlueprints[3]);
     }
     public void SelectLaserTurret()
     {
-        BuildingManager.instance.SelectTurretToBuild(_turretsBlueprints[4]);
+        BuildingManager.Instance.SelectTurretToBuild(_turretsBlueprints[4]);
     }
 }
