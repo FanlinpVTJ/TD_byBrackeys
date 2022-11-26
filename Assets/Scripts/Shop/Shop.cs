@@ -10,7 +10,6 @@ public class Shop : MonoBehaviour
     [SerializeField] private TurretBlueprint[] _turretsBlueprints; 
     [SerializeField] private TextMeshProUGUI[] _turretsCost;
 
-    // красава private не забыл))
     private void Start()
     {
         for (int i = 0; i < _turretsCost.Length; i++)
@@ -18,9 +17,6 @@ public class Shop : MonoBehaviour
             _turretsCost[i].text = "$" + _turretsBlueprints[i].Cost.ToString();
         }
     }
-    // TODO: _ в названиях методов - это уже питон какой-то, не надо так))
-    // TODO: LVL можно было написать Lvl, чем капс лучше?
-    
     public void SelectTurretLvl1()
     {
         BuildingManager.Instance.SelectTurretToBuild(_turretsBlueprints[0]);
@@ -33,9 +29,7 @@ public class Shop : MonoBehaviour
     {
         BuildingManager.Instance.SelectTurretToBuild(_turretsBlueprints[2]);
     }
-    
-    // TODO: что за 2t?
-    public void SelectTurretMissleLauncher() // оу бой, прям реально питон почти. по-питонски было бы select_missile_launcher_lvl_2t
+    public void SelectTurretMissleLauncher()
     {
         BuildingManager.Instance.SelectTurretToBuild(_turretsBlueprints[3]);
     }

@@ -24,15 +24,15 @@ public class PlayerStatsScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentPlayerLives;
     
     [SerializeField] WaveSpawner waveSpawner;
-    [SerializeField] private TextMeshProUGUI _wavesIndexText;
-    [SerializeField] private TextMeshProUGUI _wavesSpawnTime;
+    [SerializeField] private TextMeshProUGUI wavesIndexText;
+    [SerializeField] private TextMeshProUGUI wavesSpawnTime;
 
     private void Update()
     {
-        _wavesIndexText.text = waveSpawner.textWaveIndex.ToString();
-        _wavesSpawnTime.text = waveSpawner.textSpawnTime;
-        //currentPlayerMoney.text = "$" + PlayerStats.PlayerMoney.ToString();
-        //currentPlayerLives.text = PlayerStats.LiveCount.ToString();
+        wavesIndexText.text = waveSpawner.textWaveIndex.ToString();
+        wavesSpawnTime.text = waveSpawner.textSpawnTime;
+        currentPlayerMoney.text = "$" + playerStats.PlayerMoney.ToString();
+        currentPlayerLives.text = playerStats.LiveCount.ToString();
     }
    
 }

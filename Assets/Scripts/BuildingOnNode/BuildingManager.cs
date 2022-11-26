@@ -10,16 +10,18 @@ public class BuildingManager : MonoBehaviour
 {
     [SerializeField] private Vector3 turretOnNodeOffset = new Vector3(0, 0.5f, 0);
     [SerializeField] private GameObject buildEffectPrefab;
-    
+    private PlayerStats playerStats;
+
     public static BuildingManager Instance { get; private set; }// TODO: публичное PascalCase - Instance (с большой буквы)
     public bool CanBuild => turretToBuild != null; // TODO: публичное PascalCase
-    public bool HasMoney => PlayerStats.PlayerMoney >= turretToBuild.Cost; // TODO: публичное PascalCase
+    public bool HasMoney => playerStats.PlayerMoney >= turretToBuild.Cost; // TODO: публичное PascalCase
 
     private TurretBlueprint turretToBuild;
 
     private void Awake()
     {
         Instance = this;
+        playerStats = GetComponent<PlayerStats>();
     }
     
     public void SelectTurretToBuild(TurretBlueprint turretToBuild)

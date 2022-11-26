@@ -13,7 +13,6 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private float timeBetweenWave = 10.5f;
     [SerializeField] private int startWaveCount = 1;
     [SerializeField] private bool spwanerEnable = true;
-    
 
     [Header("Using in GUI")]
     public int textWaveIndex;
@@ -22,8 +21,6 @@ public class WaveSpawner : MonoBehaviour
     private float countdown = 2f;
     private int waveIndex = 1;
 
-    // Приемлемо, но я бы все равно через корутину сделал))
-    // тут это не критично и даже немного удобнее с апдейтом таймера
     private void Update()
     {
         if (countdown <= 0f)
@@ -32,10 +29,8 @@ public class WaveSpawner : MonoBehaviour
             countdown = timeBetweenWave;
         }
         countdown-= Time.deltaTime;
-
-        // TODO: во, тут тоже вместо Clamp лучше подошло бы Mathf.Max(0, _countDown)
         countdown = Mathf.Max(0, countdown);
-        textSpawnTime = string.Format("{0:00.00}", countdown); // зачет)
+        textSpawnTime = string.Format("{0:00.00}", countdown);
     }
 
     private IEnumerator SpawnWave()
@@ -57,6 +52,7 @@ public class WaveSpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        playerStats.SetActionToStats(enemy.GetComponent<UnitHealthSystem>());
         var enemyMovement = enemy.GetComponent<EnemyMovement>();
         enemyMovement.SetWaypoints(waypoints);
     }

@@ -18,19 +18,6 @@ public class Bullet : MonoBehaviour
     private Transform currentTargetTransform;
     private UnitHealthSystem targetUnitHealthSystem;
 
-    //private void Update()
-    //{
-    //    if (currentTargetTransform != null && targetUnitHealthSystem != null)
-    //    {
-    //        StartCoroutine(FlyToTarget());
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Тут должна была быть ошибка");
-    //        Destroy(gameObject);
-    //    }
-    //}
-
     public void ShotBullet(Transform currentTargetTransform, UnitHealthSystem targetUnitHealthSystem)
     {
         this.currentTargetTransform = currentTargetTransform;
@@ -57,7 +44,6 @@ public class Bullet : MonoBehaviour
             }
             catch (System.Exception)
             {
-                Debug.Log(currentTargetTransform + "currentTargetTransform");
                 Destroy(gameObject);
             }
             yield return null;
@@ -88,7 +74,6 @@ public class Bullet : MonoBehaviour
         }
         catch (System.Exception)
         {
-            Debug.Log(enemy + "UnitHealthSystem");
             Destroy(gameObject);
         }
         Destroy(gameObject);

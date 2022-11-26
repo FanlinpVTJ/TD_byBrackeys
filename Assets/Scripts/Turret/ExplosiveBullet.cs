@@ -6,6 +6,10 @@ public class ExplosiveBullet : Bullet
 {
     [SerializeField] private float explosionRadius = 5f;
 
+    private void Start()
+    {
+        gameObject.transform.parent = null;
+    }
     public override void Damage(UnitHealthSystem enemy)
     {
         Collider[] colliderCountaner = Physics.OverlapSphere(transform.position, explosionRadius);
@@ -14,6 +18,7 @@ public class ExplosiveBullet : Bullet
             if (enemies.TryGetComponent(out UnitHealthSystem enemiesHealth))
             {
                 enemiesHealth.DealDamage(bulletDamage);
+                Destroy(gameObject);
             }
         }
     }

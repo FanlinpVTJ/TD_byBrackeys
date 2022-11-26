@@ -9,12 +9,16 @@ using UnityEngine;
 // Название зачот
 public class EnemyMovement : MonoBehaviour
 {
+    public event Action<int> OnDeathChangeLives;
+
+    [SerializeField] private int costPlayerLivesOnEndPath = 1;
     [SerializeField] private float maxSpeed = 10f;
     
     private Waypoints waypoints;
     private Transform target;
-    private float startSpeed; // TODO: _startSpeed
-    private int wavepointIndex = 0; // TODO: _wayPointIndex
+    private float startSpeed;
+    private bool isSpeedChanged = false;
+    private int wavepointIndex = 0;
 
     private void Start()
     {
@@ -22,23 +26,19 @@ public class EnemyMovement : MonoBehaviour
         startSpeed = maxSpeed;
         StartCoroutine(MoveToNextWayPoint());
     }
-
+    
     public void SetWaypoints(Waypoints waypoints)
     {
         this.waypoints = waypoints;
     }
     public void ChangeSpeed(float _speedChange)
     {
+        isSpeedChanged = true;
         maxSpeed = startSpeed * (1 -_speedChange/100);
     }
 
-    // TODO: почему Get? он же ничего не возвращает
-    // просто MoveToNextWayPoint
-    // TODO: почему Get? он же ничего не возвращает
-    // это что-то вроде TrySetNewWayPoint 
     private void TrySetNewWayPoint()
     {
-        // круто, что делаешь сразу return, а не if-else, зачет))
         if (wavepointIndex >= waypoints.Points.Length - 1)
         {
             EndPath();
@@ -51,18 +51,23 @@ public class EnemyMovement : MonoBehaviour
 
     private void EndPath()
     {
+        OnDeathChangeLives?.Invoke(costPlayerLivesOnEndPath);
         Destroy(gameObject);
     }
 
     private IEnumerator MoveToNextWayPoint()
     {
-        while (Vector3.Distance(transform.position, target.position) >= 0.3f)
+        float timeElapsed = 0;
+        var currentTransfom = transform.position;
+        var currentTimeDistance = Vector3.Distance(currentTransfom, target.position) / maxSpeed;
+        while (timeElapsed < currentTimeDistance)
         {
-            var direction = target.position - transform.position;
-            transform.Translate(direction.normalized * maxSpeed * Time.deltaTime, Space.World);
+            transform.position = Vector3.Lerp(currentTransfom, target.position, timeElapsed / currentTimeDistance);
+            timeElapsed += (Time.deltaTime * maxSpeed/ startSpeed);
             maxSpeed = startSpeed;
             yield return null;
         }
+        transform.position = target.position;
         TrySetNewWayPoint();
         yield return null;
     }
