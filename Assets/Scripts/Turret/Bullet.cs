@@ -3,57 +3,94 @@ using UnityEngine;
 
 //Понимаю, что тут должен быть либо абстрактный класс либо интерфейс,
 //но я чутка устал ковырять это, попозже сделаю что то из этого
+//Тут мне нужна помощь, тк я не понимаю как избавиться от MissingReferens
+//на try catch лучше не смотреть, я хуй знает каким образом,но проверки на null даже в апдейте не спасают
+//они вылезают, когда я ставлю пулеметную 3 лвл турель и пару лазерных, лазерные
+// уничтожают врага во время того, как пуля летит к врагу, сразу теряется ссылка на трансформ, это понятно
+//Но как побороть эту проблему я хз.
+//В таком виде оно работает, но ессно я понимаю, что так быть не должно, хельп
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private GameObject impactEffect;
-    [SerializeField] private float bulletSpeed;
+    [SerializeField] private float bulletFlyToTargetTime = 0.05f;
     [SerializeField] protected int bulletDamage;
 
     private Transform currentTargetTransform;
     private UnitHealthSystem targetUnitHealthSystem;
 
-    private void Start()
-    {
-        gameObject.transform.parent = null;
-    }
-    public void ShotBullet(Transform currentTargetTransform)
+    //private void Update()
+    //{
+    //    if (currentTargetTransform != null && targetUnitHealthSystem != null)
+    //    {
+    //        StartCoroutine(FlyToTarget());
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Тут должна была быть ошибка");
+    //        Destroy(gameObject);
+    //    }
+    //}
+
+    public void ShotBullet(Transform currentTargetTransform, UnitHealthSystem targetUnitHealthSystem)
     {
         this.currentTargetTransform = currentTargetTransform;
-        if(currentTargetTransform == null)
+        this.targetUnitHealthSystem = targetUnitHealthSystem;
+        if (currentTargetTransform == null || targetUnitHealthSystem == null)
         {
             Destroy(gameObject);
             return;
         }
         StartCoroutine(FlyToTarget());
     }
-    public void SetUnitHealthSystem(UnitHealthSystem targetUnitHealthSystem)
-    {
-        this.targetUnitHealthSystem = targetUnitHealthSystem;
-    }
+    
     private IEnumerator FlyToTarget()
     {
         float timeElapsed = 0;
         var currentBulletTransfom = transform.position;
-        while (timeElapsed < bulletSpeed)
+        
+        while (timeElapsed < bulletFlyToTargetTime)
         {
-            transform.position = Vector3.Lerp(currentBulletTransfom, currentTargetTransform.position, timeElapsed / bulletSpeed);
-            timeElapsed += Time.deltaTime;
+            try
+            {
+                transform.position = Vector3.Lerp(currentBulletTransfom, currentTargetTransform.position, timeElapsed / bulletFlyToTargetTime);
+                timeElapsed += Time.deltaTime;
+            }
+            catch (System.Exception)
+            {
+                Debug.Log(currentTargetTransform + "currentTargetTransform");
+                Destroy(gameObject);
+            }
             yield return null;
         }
-        transform.position = currentTargetTransform.position;
+        try
+        {
+            transform.position = currentTargetTransform.position;
+        }
+        catch (System.Exception)
+        {
+            Destroy(gameObject);
+        }
         transform.LookAt(currentTargetTransform);
         HitTarget();
-        
+        yield return null;
     }
     private void HitTarget()
     {
-        Damage(targetUnitHealthSystem);
         GameObject particalEffect = Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(particalEffect, 2f);
-        Destroy(gameObject);
+        Damage(targetUnitHealthSystem);
     }
     public virtual void Damage(UnitHealthSystem enemy)
     {
-        enemy.DealDamage(bulletDamage);
+        try
+        {
+            enemy.DealDamage(bulletDamage);
+        }
+        catch (System.Exception)
+        {
+            Debug.Log(enemy + "UnitHealthSystem");
+            Destroy(gameObject);
+        }
+        Destroy(gameObject);
     }
 }

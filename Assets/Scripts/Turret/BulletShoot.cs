@@ -9,7 +9,7 @@ public class BulletShoot : MonoBehaviour, IDamageType
 
     private float fireCountdown;
     private Transform[] firePointTransform;
-    private bool canShoot = false;
+    private bool isReload = false;
     private UnitHealthSystem targetUnitHealthSystem;
     private EnemyMovement targetEnemyMovement;
     private Transform currentTargetTransform;
@@ -22,12 +22,12 @@ public class BulletShoot : MonoBehaviour, IDamageType
     {
         if (fireCountdown <= 0)
         {
-            canShoot = true;
+            isReload = true;
             fireCountdown = fireRate;
         }
         else
         {
-            canShoot = false;
+            isReload = false;
         }
         fireCountdown -= Time.deltaTime;
     }
@@ -46,7 +46,7 @@ public class BulletShoot : MonoBehaviour, IDamageType
     }
     private IEnumerator ShootQueue()
     {
-        if (canShoot)
+        if (isReload)
         {
             foreach (var firePointTransform in firePointTransform)
             {
@@ -54,8 +54,7 @@ public class BulletShoot : MonoBehaviour, IDamageType
                 Bullet bullet = bulletGameObject.GetComponent<Bullet>();
                 if (bullet != null)
                 {
-                    bullet.ShotBullet(currentTargetTransform);
-                    bullet.SetUnitHealthSystem(targetUnitHealthSystem);
+                    bullet.ShotBullet(currentTargetTransform, targetUnitHealthSystem);
                 }
                 yield return new WaitForSeconds(0.1f);
             }
@@ -66,6 +65,8 @@ public class BulletShoot : MonoBehaviour, IDamageType
     public void StopShoot()
     {
         StopAllCoroutines();
+        if (gameObject.GetComponentInChildren<Bullet>() != null)
+            Destroy(GetComponentInChildren<Bullet>().gameObject);
     }
 }
 

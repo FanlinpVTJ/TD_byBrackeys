@@ -6805,6 +6805,7 @@ MonoBehaviour:
   waypoints: {fileID: 885796705}
   playerStats: {fileID: 522445308}
   timeBetweenWave: 10.5
+  startWaveCount: 1
   spwanerEnable: 1
   textWaveIndex: 1
   textSpawnTime: 
