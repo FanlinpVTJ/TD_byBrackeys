@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,10 +18,12 @@ public class GameOver : MonoBehaviour
     {
         gameOverWavesCountText.text = waveSpawner.textWaveIndex.ToString();
         gameOverUI.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void Retry()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void Menu()

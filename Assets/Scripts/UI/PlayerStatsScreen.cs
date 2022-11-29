@@ -26,6 +26,7 @@ public class PlayerStatsScreen : MonoBehaviour
     [SerializeField] WaveSpawner waveSpawner;
     [SerializeField] private TextMeshProUGUI wavesIndexText;
     [SerializeField] private TextMeshProUGUI wavesSpawnTime;
+    
 
     private void Update()
     {
@@ -34,5 +35,4 @@ public class PlayerStatsScreen : MonoBehaviour
         currentPlayerMoney.text = "$" + playerStats.PlayerMoney.ToString();
         currentPlayerLives.text = playerStats.LiveCount.ToString();
     }
-   
 }

@@ -1,12 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: можно было сделать корутину, которая перемещает из точки A в точку B,
-// после чего вызывает TrySetNewWayPoint и так по кругу, пока точки не кончатся
-// Update был бы не нужен, перемещение стало бы набором конечных действий, а не чем-то непрерывным
-// Название зачот
 public class EnemyMovement : MonoBehaviour
 {
     public event Action<int> OnDeathChangeLives;
@@ -17,7 +12,6 @@ public class EnemyMovement : MonoBehaviour
     private Waypoints waypoints;
     private Transform target;
     private float startSpeed;
-    private bool isSpeedChanged = false;
     private int wavepointIndex = 0;
 
     private void Start()
@@ -33,7 +27,6 @@ public class EnemyMovement : MonoBehaviour
     }
     public void ChangeSpeed(float _speedChange)
     {
-        isSpeedChanged = true;
         maxSpeed = startSpeed * (1 -_speedChange/100);
     }
 

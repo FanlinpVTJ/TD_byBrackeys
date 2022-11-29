@@ -13,6 +13,7 @@ public class UnitHealthSystem : MonoBehaviour
     [SerializeField] private Image hpBar;
 
     private float currentHealth;
+    private bool isOnDeathChangeMoneyAwake = true;
 
     private void Start()
     {
@@ -33,12 +34,15 @@ public class UnitHealthSystem : MonoBehaviour
     private IEnumerator UnitDeath()
     {
         yield return null;
+        if (isOnDeathChangeMoneyAwake)
+        {
+            OnDeathChangeMoney?.Invoke(costForDestroy);
+            isOnDeathChangeMoneyAwake = false;
+        }
         Destroy(gameObject);
     }
     private void OnDestroy()
     {
-        OnDeathChangeMoney?.Invoke(costForDestroy);
         OnDeath?.Invoke(this);
-        Debug.Log("Events");
     }
 }

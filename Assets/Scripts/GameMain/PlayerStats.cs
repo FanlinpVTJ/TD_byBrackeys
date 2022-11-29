@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-// Название зачот
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private int startMoney = 400;
@@ -19,7 +16,6 @@ public class PlayerStats : MonoBehaviour
 
     private void ChangePlayerMoney(int moneyChange)
     {
-        Debug.Log("Должно прибавить");
         PlayerMoney += moneyChange;
     }
     private void ChangePlayerLives(int livesChange)

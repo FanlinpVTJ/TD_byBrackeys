@@ -1,17 +1,19 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-// Название зачот
 public class WaveSpawner : MonoBehaviour
 {
+    public event Action OnEnemySpawn;
+
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Waypoints waypoints;
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private EnemySpawnAndDestroyCount enemySpawnAndDestroyCount;
     [SerializeField] private float timeBetweenWave = 10.5f;
     [SerializeField] private int startWaveCount = 1;
+    [SerializeField] private float timeBetweenUnitInWave = 0.3f;
     [SerializeField] private bool spwanerEnable = true;
 
     [Header("Using in GUI")]
@@ -42,7 +44,7 @@ public class WaveSpawner : MonoBehaviour
             for (int i = 0; i < waveCount; i++)
             {
                 SpawnEnemy();
-                yield return new WaitForSeconds(0.3f);
+                yield return new WaitForSeconds(timeBetweenUnitInWave);
             }
             waveIndex++;
         }
@@ -52,8 +54,11 @@ public class WaveSpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-        playerStats.SetActionToStats(enemy.GetComponent<UnitHealthSystem>());
+        var enemyHealthSystem = enemy.GetComponent<UnitHealthSystem>();
+        playerStats.SetActionToStats(enemyHealthSystem);
         var enemyMovement = enemy.GetComponent<EnemyMovement>();
         enemyMovement.SetWaypoints(waypoints);
+        OnEnemySpawn.Invoke();
+        enemySpawnAndDestroyCount.SetEnemyDeathAction(enemyHealthSystem);
     }
 }
