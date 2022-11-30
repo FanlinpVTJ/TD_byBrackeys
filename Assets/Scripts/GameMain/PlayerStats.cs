@@ -4,10 +4,20 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private int startMoney = 400;
     [SerializeField] private int startLives;
+    [SerializeField] private NodeUI nodeUI;
 
     public int PlayerMoney { get; private set; }
     public int LiveCount { get; private set; }
-
+    private void OnEnable()
+    {
+        BuildingManager.Instance.OnTurretBuilding += ChangePlayerMoney;
+        nodeUI.OnSellTurret += ChangePlayerMoney;
+    }
+    private void OnDisable()
+    {
+        BuildingManager.Instance.OnTurretBuilding -= ChangePlayerMoney;
+        nodeUI.OnSellTurret -= ChangePlayerMoney;
+    }
     private void Awake()
     {
         PlayerMoney = startMoney;

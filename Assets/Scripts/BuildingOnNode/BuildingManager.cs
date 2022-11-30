@@ -1,22 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-// TODO: окей, прикольно, что он выполняет свою функцию
-// не окей, что он тоже меняет баланс в _wallet, это бы тоже делать по ивенту
-// Понравилось, что сначала Select, потом BuildOn(node)
-// название +, названия методов тоже +
 public class BuildingManager : MonoBehaviour
 {
+    public event Action<int> OnTurretBuilding;
+
     [SerializeField] private Vector3 turretOnNodeOffset = new Vector3(0, 0.5f, 0);
     [SerializeField] private GameObject buildEffectPrefab;
+    [SerializeField] private NodeUI nodeUI;
     private PlayerStats playerStats;
 
-    public static BuildingManager Instance { get; private set; }// TODO: публичное PascalCase - Instance (с большой буквы)
-    public bool CanBuild => turretToBuild != null; // TODO: публичное PascalCase
-    public bool HasMoney => playerStats.PlayerMoney >= turretToBuild.Cost; // TODO: публичное PascalCase
+    public static BuildingManager Instance { get; private set; }
+    public bool CanBuild => turretToBuild != null;
+    public bool HasMoney => playerStats.PlayerMoney >= turretToBuild.Cost;
 
     private TurretBlueprint turretToBuild;
+    private TurretBuildInput selectedNode;
 
     private void Awake()
     {
@@ -27,6 +26,25 @@ public class BuildingManager : MonoBehaviour
     public void SelectTurretToBuild(TurretBlueprint turretToBuild)
     {
         this.turretToBuild = turretToBuild;
+        DeselectNode();
+    }
+
+    public void SelectTurretToUpgradeOrSell(TurretBuildInput selectedNode)
+    {
+        if (this.selectedNode == selectedNode)
+        {
+            DeselectNode();
+            return;
+        }
+        this.selectedNode = selectedNode;
+        turretToBuild = null;
+        nodeUI.SetTarget(this.selectedNode);
+    }
+
+    private void DeselectNode()
+    {
+        nodeUI.Hide();
+        selectedNode = null;
     }
     public void BuildTurretOn(TurretBuildInput node)
     {
@@ -34,12 +52,15 @@ public class BuildingManager : MonoBehaviour
         {
             return;
         }
+
         GameObject turret = Instantiate(turretToBuild.Prefab, node.transform.position + turretOnNodeOffset, 
             Quaternion.identity);
         GameObject _buitldEffect = Instantiate(buildEffectPrefab, node.transform.position + turretOnNodeOffset, 
             Quaternion.identity);
         Destroy(_buitldEffect, 2f);
         node.Turret = turret;
+        node.TurretCost = turretToBuild.Cost;
+        OnTurretBuilding.Invoke(-turretToBuild.Cost);
     }
 }
 

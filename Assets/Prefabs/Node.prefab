@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1801887220085424883}
   - component: {fileID: 7976506060031498014}
   - component: {fileID: -6490901196651755688}
+  - component: {fileID: 1137045686376001456}
   m_Layer: 7
   m_Name: Node
   m_TagString: Untagged
@@ -110,6 +111,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91a9aedcbd8ce34388ce5b6c1f2d6a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hoverColor: {r: 0.2943396, g: 0.5, b: 0.3172834, a: 0}
-  _notEnoughtMoneyColor: {r: 1, g: 0, b: 0, a: 0}
-  _turret: {fileID: 0}
+  nodeUI: {fileID: 3257303278960209255, guid: 21dff9d3be2994c43abc9c25ebfdcb51, type: 3}
+--- !u!114 &1137045686376001456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7692303898627406360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2287ac01741d02340bcd8e7c9f82b5ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverColor: {r: 0.33922946, g: 1, b: 0.1641509, a: 0.50980395}
+  hoverColorUpgrade: {r: 0.12260585, g: 0.65795845, b: 0.7924528, a: 0.5411765}
+  notEnoughtMoneyColor: {r: 0.8301887, g: 0.2145959, b: 0.2145959, a: 0.5254902}
