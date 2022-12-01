@@ -5,13 +5,13 @@ using UnityEngine;
 public class BulletShoot : MonoBehaviour, IDamageType
 {
     [SerializeField] private GameObject bullet;
-    [SerializeField] private float fireRate = 0.5f;
+    [SerializeField] private float fireRate;
+    [SerializeField] private int bulletDamage;
 
     private float fireCountdown;
     private Transform[] firePointTransform;
     private bool isReload = false;
     private UnitHealthSystem targetUnitHealthSystem;
-    private EnemyMovement targetEnemyMovement;
     private Transform currentTargetTransform;
 
     private void Start()
@@ -55,8 +55,9 @@ public class BulletShoot : MonoBehaviour, IDamageType
                 if (bullet != null)
                 {
                     bullet.ShotBullet(currentTargetTransform, targetUnitHealthSystem);
+                    bullet.SetBulletDamage(bulletDamage);
                 }
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(fireRate/ this.firePointTransform.Length);
             }
         }
         yield return null;

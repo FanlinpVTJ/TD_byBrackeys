@@ -13,10 +13,15 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private float bulletFlyToTargetTime = 0.05f;
-    [SerializeField] protected int bulletDamage;
-
+    
+    protected int bulletDamage;
     private Transform currentTargetTransform;
     private UnitHealthSystem targetUnitHealthSystem;
+    
+    public void SetBulletDamage(int bulletDamage)
+    {
+        this.bulletDamage = bulletDamage;
+    }
 
     public void ShotBullet(Transform currentTargetTransform, UnitHealthSystem targetUnitHealthSystem)
     {

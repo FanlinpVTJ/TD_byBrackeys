@@ -17717,14 +17717,24 @@ MonoBehaviour:
   _turretsBlueprints:
   - Prefab: {fileID: 3023623930772034328, guid: b8f082d5cb0fec54bb7bac9eaef60054, type: 3}
     Cost: 100
+    Level: 1
+    UpgradeCost: 100
   - Prefab: {fileID: 5648195971712949721, guid: 87ad2d2994f706d4d9d91002a2d70dd8, type: 3}
     Cost: 200
+    Level: 2
+    UpgradeCost: 100
   - Prefab: {fileID: 2514446244179388969, guid: fe5401c1dd7932844a13943c9134a2eb, type: 3}
     Cost: 300
+    Level: 3
+    UpgradeCost: 100
   - Prefab: {fileID: 2157671470003670258, guid: 7deb7c88b12dcaf4f93235d6480eed06, type: 3}
     Cost: 400
+    Level: 1
+    UpgradeCost: 400
   - Prefab: {fileID: 3775598704784854990, guid: 7c706ef20cdbe8741b64d6a30d11808e, type: 3}
-    Cost: 400
+    Cost: 300
+    Level: 1
+    UpgradeCost: 200
   _turretsCost:
   - {fileID: 2117224829}
   - {fileID: 452224950}

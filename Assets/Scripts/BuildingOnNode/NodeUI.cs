@@ -29,7 +29,7 @@ public class NodeUI : MonoBehaviour
     {
         var sellCost = selectedNode.TurretCost / sellCoefficient;
         OnSellTurret.Invoke(sellCost);
-        Destroy(selectedNode.Turret.gameObject);
+        Destroy(selectedNode);
         selectedNode=null;
     }
 }

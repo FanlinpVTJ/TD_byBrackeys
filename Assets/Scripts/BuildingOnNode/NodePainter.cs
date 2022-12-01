@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class NodePointer : MonoBehaviour
+public class NodePainter : MonoBehaviour
 {
     [SerializeField] private Color hoverColor;
     [SerializeField] private Color hoverColorUpgrade;
@@ -22,15 +22,15 @@ public class NodePointer : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
-        if (!BuildingManager.Instance.CanBuild)
+        if (!turretBuildInput.IsTurret)
         {
             return;
         }
-        if (BuildingManager.Instance.HasMoney && turretBuildInput.Turret == null) 
+        if (turretBuildInput.HasMoney && !turretBuildInput.IsTurret) 
         {
             nodeRenderer.material.color = hoverColor;
         }
-        else if (turretBuildInput.Turret != null)
+        else if (turretBuildInput.IsTurret)
         {
             nodeRenderer.material.color = hoverColorUpgrade;
         }
