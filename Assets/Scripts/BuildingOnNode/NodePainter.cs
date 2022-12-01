@@ -11,10 +11,10 @@ public class NodePainter : MonoBehaviour
 
     private Color startColor;
     private Renderer nodeRenderer;
-    private TurretBuildInput turretBuildInput;
+    private TurretNodeBuilder turretBuildInput;
     private void Start()
     {
-        turretBuildInput = GetComponent<TurretBuildInput>();
+        turretBuildInput = GetComponent<TurretNodeBuilder>();
         nodeRenderer = GetComponent<Renderer>();
         startColor = nodeRenderer.material.color;
     }
@@ -22,15 +22,15 @@ public class NodePainter : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
-        if (!turretBuildInput.IsTurret)
+        if (!BuildingManager.Instance.CanBuild)
         {
             return;
         }
-        if (turretBuildInput.HasMoney && !turretBuildInput.IsTurret) 
+        if (BuildingManager.Instance.HasMoney && BuildingManager.Instance.CanBuild && !turretBuildInput.Turret) 
         {
             nodeRenderer.material.color = hoverColor;
         }
-        else if (turretBuildInput.IsTurret)
+        else if (turretBuildInput.Turret)
         {
             nodeRenderer.material.color = hoverColorUpgrade;
         }

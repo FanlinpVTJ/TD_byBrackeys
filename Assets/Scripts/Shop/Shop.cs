@@ -16,25 +16,27 @@ public class Shop : MonoBehaviour
         {
             _turretsCost[i].text = "$" + _turretsBlueprints[i].Cost.ToString();
         }
+
+
     }
     public void SelectTurretLvl1()
     {
-        BuildingManager.Instance.SelectTurretToBuild(_turretsBlueprints[0]);
+        BuildingManager.Instance.SetTurretToBuild(_turretsBlueprints[0]);
     }
     public void SelectTurretLvl2()
     {
-        BuildingManager.Instance.SelectTurretToBuild(_turretsBlueprints[1]);
+        BuildingManager.Instance.SetTurretToBuild(_turretsBlueprints[1]);
     }
     public void SelectTurretLvl3()
     {
-        BuildingManager.Instance.SelectTurretToBuild(_turretsBlueprints[2]);
+        BuildingManager.Instance.SetTurretToBuild(_turretsBlueprints[2]);
     }
     public void SelectTurretMissleLauncher()
     {
-        BuildingManager.Instance.SelectTurretToBuild(_turretsBlueprints[3]);
+        BuildingManager.Instance.SetTurretToBuild(_turretsBlueprints[3]);
     }
     public void SelectLaserTurret()
     {
-        BuildingManager.Instance.SelectTurretToBuild(_turretsBlueprints[4]);
+        BuildingManager.Instance.SetTurretToBuild(_turretsBlueprints[4]);
     }
 }

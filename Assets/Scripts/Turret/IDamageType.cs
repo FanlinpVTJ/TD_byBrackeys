@@ -8,4 +8,5 @@ public interface IDamageType
     void SetTargetComponent(Transform transform, UnitHealthSystem unitHealth, EnemyMovement enemyMovement);
     void Shoot();
     void StopShoot();
+    void UpgradeTurret();
 }

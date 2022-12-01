@@ -12,11 +12,13 @@ public class PlayerStats : MonoBehaviour
     {
         BuildingManager.Instance.OnTurretBuilding += ChangePlayerMoney;
         nodeUI.OnSellTurret += ChangePlayerMoney;
+        nodeUI.OnUpgradeTurret += ChangePlayerMoney;
     }
     private void OnDisable()
     {
         BuildingManager.Instance.OnTurretBuilding -= ChangePlayerMoney;
         nodeUI.OnSellTurret -= ChangePlayerMoney;
+        nodeUI.OnUpgradeTurret -= ChangePlayerMoney;
     }
     private void Awake()
     {

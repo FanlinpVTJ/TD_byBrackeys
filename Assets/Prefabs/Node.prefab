@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7976506060031498014}
   - component: {fileID: -6490901196651755688}
   - component: {fileID: 1137045686376001456}
+  - component: {fileID: 5447002058989909272}
   m_Layer: 7
   m_Name: Node
   m_TagString: Untagged
@@ -111,7 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91a9aedcbd8ce34388ce5b6c1f2d6a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeUI: {fileID: 3257303278960209255, guid: 21dff9d3be2994c43abc9c25ebfdcb51, type: 3}
+  turretOnNodeOffset: {x: 0, y: 0.5, z: 0}
+  buildEffectPrefab: {fileID: 691359938725747253, guid: 882732a252e9cdd44af58c07999a414b, type: 3}
 --- !u!114 &1137045686376001456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,3 +129,29 @@ MonoBehaviour:
   hoverColor: {r: 0.33922946, g: 1, b: 0.1641509, a: 0.50980395}
   hoverColorUpgrade: {r: 0.12260585, g: 0.65795845, b: 0.7924528, a: 0.5411765}
   notEnoughtMoneyColor: {r: 0.8301887, g: 0.2145959, b: 0.2145959, a: 0.5254902}
+--- !u!114 &5447002058989909272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7692303898627406360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765bd51b206cd6f46b5c9ae318d71a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretOnNodeOffset: {x: 0, y: 0.5, z: 0}
+  buildEffectPrefab: {fileID: 691359938725747253, guid: 882732a252e9cdd44af58c07999a414b, type: 3}
+  UpgradePrefub:
+  - Prefab: {fileID: 5648195971712949721, guid: 87ad2d2994f706d4d9d91002a2d70dd8, type: 3}
+    Cost: 0
+    TurretLevel: 2
+    UpgradeCost: 100
+    MaxTurretLevel: 3
+  - Prefab: {fileID: 2514446244179388969, guid: fe5401c1dd7932844a13943c9134a2eb, type: 3}
+    Cost: 0
+    TurretLevel: 3
+    UpgradeCost: 100
+    MaxTurretLevel: 3
+  playerStats: {fileID: 0}

@@ -6,7 +6,7 @@ public class BulletShoot : MonoBehaviour, IDamageType
 {
     [SerializeField] private GameObject bullet;
     [SerializeField] private float fireRate;
-    [SerializeField] private int bulletDamage;
+    [SerializeField] private float bulletDamage;
 
     private float fireCountdown;
     private Transform[] firePointTransform;
@@ -68,6 +68,12 @@ public class BulletShoot : MonoBehaviour, IDamageType
         StopAllCoroutines();
         if (gameObject.GetComponentInChildren<Bullet>() != null)
             Destroy(GetComponentInChildren<Bullet>().gameObject);
+    }
+
+    public void UpgradeTurret()
+    {
+        fireRate *= 0.9f;
+        bulletDamage *= 1.1f;
     }
 }
 

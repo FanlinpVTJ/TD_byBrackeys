@@ -78,4 +78,10 @@ public class LaserShoot : MonoBehaviour, IDamageType
             damageEffectDirectionOffset;
         yield return null;
     }
+
+    public void UpgradeTurret()
+    {
+        laserDamage *= 1.1f;
+        laserSlowingFactor *= 1.1f;
+    }
 }

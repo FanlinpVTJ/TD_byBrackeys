@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 8923650300499736398, guid: db610f3dffcf7a94885f419da53aee3b, type: 3}
-  fireRate: 0.5
+  fireRate: 0.2
   bulletDamage: 10
 --- !u!1 &4111682390185591437
 GameObject:

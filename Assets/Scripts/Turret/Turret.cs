@@ -61,11 +61,6 @@ public class Turret : MonoBehaviour
         partToRotate.rotation = Quaternion.Slerp(yrotationTurret, yTargetRotation, speedRotationOfTurret * Time.deltaTime);
     }
 
-    // TODO: а вот это как раз можно было в апдейте сделать)
-    // оно непрерывное, у этого нет окончания
-    // хотя судя по WaitForSeconds(0.2f), я так понимаю, тут такая задумка, что не каждый кадр проверки?
-    // или это чтоб не лагало от поиска по тегу?))
-
     //Да, шоб не лагало) Эвенты будут следующей иттерацией
     private IEnumerator TargetingEnemy()
     {
@@ -74,9 +69,9 @@ public class Turret : MonoBehaviour
             GameObject _nearestEnemy = null;
             var shortestDistance = _turretFireRange;
             
-            // TODO: оу май, поиск по тэгу))
             //Да, нужно строитть систему эвентов для регуляции спавна и смерти, но я пока не владею этим
             GameObject[] targets = GameObject.FindGameObjectsWithTag(_tagToFind);
+            
             foreach (var enemy in targets)
             {
                 float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);

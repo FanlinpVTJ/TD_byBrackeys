@@ -6974,8 +6974,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9bf63778c587c64286a85ef60bfd2bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretOnNodeOffset: {x: 0, y: 0.5, z: 0}
-  buildEffectPrefab: {fileID: 691359938725747253, guid: 882732a252e9cdd44af58c07999a414b, type: 3}
   nodeUI: {fileID: 256075108804229274}
 --- !u!114 &522445308
 MonoBehaviour:
@@ -17717,24 +17715,29 @@ MonoBehaviour:
   _turretsBlueprints:
   - Prefab: {fileID: 3023623930772034328, guid: b8f082d5cb0fec54bb7bac9eaef60054, type: 3}
     Cost: 100
-    Level: 1
+    TurretLevel: 1
     UpgradeCost: 100
+    MaxTurretLevel: 3
   - Prefab: {fileID: 5648195971712949721, guid: 87ad2d2994f706d4d9d91002a2d70dd8, type: 3}
     Cost: 200
-    Level: 2
+    TurretLevel: 2
     UpgradeCost: 100
+    MaxTurretLevel: 3
   - Prefab: {fileID: 2514446244179388969, guid: fe5401c1dd7932844a13943c9134a2eb, type: 3}
     Cost: 300
-    Level: 3
+    TurretLevel: 3
     UpgradeCost: 100
+    MaxTurretLevel: 3
   - Prefab: {fileID: 2157671470003670258, guid: 7deb7c88b12dcaf4f93235d6480eed06, type: 3}
     Cost: 400
-    Level: 1
+    TurretLevel: 1
     UpgradeCost: 400
+    MaxTurretLevel: 2
   - Prefab: {fileID: 3775598704784854990, guid: 7c706ef20cdbe8741b64d6a30d11808e, type: 3}
     Cost: 300
-    Level: 1
+    TurretLevel: 1
     UpgradeCost: 200
+    MaxTurretLevel: 2
   _turretsCost:
   - {fileID: 2117224829}
   - {fileID: 452224950}
@@ -27293,7 +27296,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6074311511174542094}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 256075108804229274}
+        m_TargetAssemblyTypeName: NodeUI, Assembly-CSharp
+        m_MethodName: UpgradeTurret
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6074311511174542094
 MonoBehaviour:
   m_ObjectHideFlags: 0

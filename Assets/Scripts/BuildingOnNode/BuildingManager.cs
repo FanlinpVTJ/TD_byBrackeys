@@ -1,66 +1,73 @@
 using System;
 using UnityEngine;
 
+//получает чертеж турели,
+//передает в инпут,
+//вызывает эвент постройки,
+//отвечает за перемещение NodeUI
+//вызов идет от turret build input
+//тут я дико туплю, не знаю как лучше организовать это все, куда лучше впихивать эвент,
+//надо ли дорабатывать это все. В таком виде работает, как дальше оптимизировать я пока не разобрался да и впринципе хз)
 public class BuildingManager : MonoBehaviour
 {
     public event Action<int> OnTurretBuilding;
 
-    [SerializeField] private Vector3 turretOnNodeOffset = new Vector3(0, 0.5f, 0);
-    [SerializeField] private GameObject buildEffectPrefab;
+   
     [SerializeField] private NodeUI nodeUI;
     private PlayerStats playerStats;
 
     public static BuildingManager Instance { get; private set; }
-    public bool CanBuild => turretToBuild != null;
-    public bool HasMoney => playerStats.PlayerMoney >= turretToBuild.Cost;
+    public bool CanBuild => turretBlueprint != null;
+    public bool HasMoney => playerStats.PlayerMoney >= turretBlueprint.Cost;
+    public bool HasMoneyToUpgrade => playerStats.PlayerMoney >= turretUpgradeCost;
 
-    private TurretBlueprint turretToBuild;
-    private TurretBuildInput selectedNode;
+    private TurretBlueprint turretBlueprint;
+    private TurretNodeBuilder turretNodeBuilder;
+    private int turretUpgradeCost;
 
     private void Awake()
     {
         Instance = this;
         playerStats = GetComponent<PlayerStats>();
     }
-    
-    public void SelectTurretToBuild(TurretBlueprint turretToBuild)
+
+    public void SetTurretUpgradeCost(int turretUpgradeCost)
     {
-        this.turretToBuild = turretToBuild;
-        DeselectNode();
+        this.turretUpgradeCost = turretUpgradeCost; 
+    }
+    
+    public void SetTurretToBuild(TurretBlueprint turretBlueprint)
+    {
+        this.turretBlueprint = turretBlueprint;
+        //DeselectNode();
     }
 
-    public void SelectTurretToUpgradeOrSell(TurretBuildInput selectedNode)
+    public void SelectTurretToUpgradeOrSell(TurretNodeBuilder turretNodeBuilder)
     {
-        if (this.selectedNode == selectedNode)
+        if (this.turretNodeBuilder == turretNodeBuilder)
         {
             DeselectNode();
             return;
         }
-        this.selectedNode = selectedNode;
-        turretToBuild = null;
-        nodeUI.SetTarget(this.selectedNode);
+        this.turretNodeBuilder = turretNodeBuilder;
+        turretBlueprint = null;
+        nodeUI.SetTarget(this.turretNodeBuilder);
     }
 
     private void DeselectNode()
     {
-        nodeUI.Hide();
-        selectedNode = null;
+        nodeUI.HideNodeUI();
+        turretNodeBuilder = null;
     }
-    public void BuildTurretOn(TurretBuildInput node)
+
+    public void BuildTurretOn(TurretNodeBuilder turretBuildInput)
     {
         if(!HasMoney)
         {
             return;
         }
-
-        GameObject turret = Instantiate(turretToBuild.Prefab, node.transform.position + turretOnNodeOffset, 
-            Quaternion.identity);
-        GameObject _buitldEffect = Instantiate(buildEffectPrefab, node.transform.position + turretOnNodeOffset, 
-            Quaternion.identity);
-        Destroy(_buitldEffect, 2f);
-        node.Turret = turret;
-        node.TurretCost = turretToBuild.Cost;
-        OnTurretBuilding.Invoke(-turretToBuild.Cost);
+        turretBuildInput.SetTurretBlueprint(turretBlueprint);
+        OnTurretBuilding.Invoke(-turretBlueprint.Cost);
     }
 }
 
