@@ -1,6 +1,11 @@
 using System;
 using UnityEngine;
 
+
+//тут конечно говнище еще то, но как смог, вообще эта штука должна что:
+//принимать положение выделеной ноды, получать чертеж на апгрейд/продажу
+//иметь два метода и два эвента в них соответственно продажа или апгрейд
+//но оно работает, а я заебался))
 public class NodeUI : MonoBehaviour
 {
     public event Action<int> OnSellTurret;
@@ -28,7 +33,6 @@ public class NodeUI : MonoBehaviour
 
     public void SellTurret()
     {
-        Debug.Log("Sell from NodeUI");
         var sellCost = turretNodeBuilder.TurretCost / sellCoefficient;
         OnSellTurret.Invoke(sellCost);
         Destroy(turretNodeBuilder.Turret);
@@ -38,7 +42,6 @@ public class NodeUI : MonoBehaviour
 
     public void UpgradeTurret()
     {
-        Debug.Log("Update from NodeUI");
         var UpgradelCost = turretNodeBuilder.TurretUpgradeCost;
         BuildingManager.Instance.SetTurretUpgradeCost(UpgradelCost);
         if (!BuildingManager.Instance.HasMoneyToUpgrade)

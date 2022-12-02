@@ -41,7 +41,7 @@ public class TurretNodeBuilder : MonoBehaviour
     public void TurretBuilding()
     {
         Debug.Log("1");
-        GameObject turret = Instantiate(turretBlueprint.Prefab, transform.position + turretOnNodeOffset,
+        GameObject turret = Instantiate(turretBlueprint.gameObject, transform.position + turretOnNodeOffset,
             Quaternion.identity);
         GameObject _buitldEffect = Instantiate(buildEffectPrefab, transform.position + turretOnNodeOffset,
             Quaternion.identity);

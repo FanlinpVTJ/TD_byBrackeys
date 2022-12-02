@@ -11,7 +11,6 @@ using UnityEngine;
 public class BuildingManager : MonoBehaviour
 {
     public event Action<int> OnTurretBuilding;
-
    
     [SerializeField] private NodeUI nodeUI;
     private PlayerStats playerStats;
@@ -39,7 +38,6 @@ public class BuildingManager : MonoBehaviour
     public void SetTurretToBuild(TurretBlueprint turretBlueprint)
     {
         this.turretBlueprint = turretBlueprint;
-        //DeselectNode();
     }
 
     public void SelectTurretToUpgradeOrSell(TurretNodeBuilder turretNodeBuilder)

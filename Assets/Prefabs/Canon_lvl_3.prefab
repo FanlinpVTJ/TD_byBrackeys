@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2514446244179388971}
   - component: {fileID: 2514446244179388968}
   - component: {fileID: 4802857475759431765}
+  - component: {fileID: -652288403255953257}
   m_Layer: 0
   m_Name: Canon_lvl_3
   m_TagString: Untagged
@@ -83,6 +84,23 @@ MonoBehaviour:
   bullet: {fileID: 8923650300499736398, guid: db610f3dffcf7a94885f419da53aee3b, type: 3}
   fireRate: 0.2
   bulletDamage: 10
+--- !u!114 &-652288403255953257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2514446244179388969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9ab96b32c993a4b855ad72f6546ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretToUpgrade: {fileID: 0}
+  cost: 300
+  turretLevel: 3
+  upgradeCost: 100
+  maxThisTypeTurretLevel: 3
 --- !u!1 &4111682390185591437
 GameObject:
   m_ObjectHideFlags: 0

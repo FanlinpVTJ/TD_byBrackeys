@@ -7,16 +7,12 @@ public class TurretUpgrade : MonoBehaviour
 {
     [SerializeField] private Vector3 turretOnNodeOffset = new Vector3(0, 0.5f, 0);
     [SerializeField] private GameObject buildEffectPrefab;
-    [SerializeField] private TurretBlueprint[] UpgradePrefub;
     [SerializeField] private PlayerStats playerStats;
-
+    [SerializeField] private TurretNodeBuilder turretNodeBuilder;
+    
     private TurretBlueprint turretBlueprint;
-    private TurretNodeBuilder turretNodeBuilder;
-   
-    private void Start()
-    {
-        turretNodeBuilder = GetComponent<TurretNodeBuilder>();
-    }
+    private TurretBlueprint UpgradePrefub;
+    
 
     public void Upgrade(TurretBlueprint turretBlueprint)
     {
@@ -26,10 +22,10 @@ public class TurretUpgrade : MonoBehaviour
 
     public void UpgradeTurret()
     {
-        if (turretBlueprint.TurretLevel >= turretBlueprint.MaxTurretLevel)
+        if (turretBlueprint.TurretLevel >= turretBlueprint.MaxThisTypeTurretLevel)
         {
-            turretNodeBuilder.Turret.GetComponent<IDamageType>().UpgradeTurret();
-            Debug.Log("Upgrade with stats");
+            Debug.Log(turretBlueprint.IDamageType);
+            turretBlueprint.IDamageType.UpgradeTurret();
         }
         else
         {
@@ -45,8 +41,7 @@ public class TurretUpgrade : MonoBehaviour
             return;
         }
         Destroy(turretNodeBuilder.Turret);
-
-        turretNodeBuilder.SetTurretBlueprint(turretBlueprint);
+        turretNodeBuilder.SetTurretBlueprint(turretBlueprint.TurretToUpgrade);
         turretNodeBuilder.TurretBuilding();
 
     }

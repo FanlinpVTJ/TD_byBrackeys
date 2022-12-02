@@ -2,13 +2,18 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class TurretBlueprint
+public class TurretBlueprint : MonoBehaviour
 {
-    public GameObject Prefab;
-    public int Cost;
-    public int TurretLevel;
-    public int UpgradeCost;
-    public int MaxTurretLevel;
-    public IDamageType damageType;
+    [SerializeField] private TurretBlueprint turretToUpgrade;
+    [SerializeField] private int cost;
+    [SerializeField] private int turretLevel;
+    [SerializeField] private int upgradeCost;
+    [SerializeField] private int maxThisTypeTurretLevel;
+    public TurretBlueprint TurretToUpgrade { get { return turretToUpgrade; } }
+    public int Cost { get { return cost; } }
+    public int TurretLevel { get { return turretLevel; } }
+    public int UpgradeCost { get { return upgradeCost; } }
+    public int MaxThisTypeTurretLevel { get { return maxThisTypeTurretLevel; } }
+    public IDamageType IDamageType { get { return GetComponent<IDamageType>(); } }
 
 }

@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 1992057617500000456}
   - component: {fileID: 3863495720531740353}
   - component: {fileID: -1977152662378545112}
+  - component: {fileID: 7659153163518789829}
   m_Layer: 0
   m_Name: LaserTurret
   m_TagString: Untagged
@@ -214,6 +215,23 @@ MonoBehaviour:
   laserDamageLightEffect: {fileID: 3802728223860346501}
   laserDamage: 50
   laserSlowingFactor: 50
+--- !u!114 &7659153163518789829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3775598704784854990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9ab96b32c993a4b855ad72f6546ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretToUpgrade: {fileID: 0}
+  cost: 300
+  turretLevel: 1
+  upgradeCost: 100
+  maxThisTypeTurretLevel: 1
 --- !u!1 &4487618312775123578
 GameObject:
   m_ObjectHideFlags: 0

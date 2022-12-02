@@ -17713,31 +17713,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _turretsBlueprints:
-  - Prefab: {fileID: 3023623930772034328, guid: b8f082d5cb0fec54bb7bac9eaef60054, type: 3}
-    Cost: 100
-    TurretLevel: 1
-    UpgradeCost: 100
-    MaxTurretLevel: 3
-  - Prefab: {fileID: 5648195971712949721, guid: 87ad2d2994f706d4d9d91002a2d70dd8, type: 3}
-    Cost: 200
-    TurretLevel: 2
-    UpgradeCost: 100
-    MaxTurretLevel: 3
-  - Prefab: {fileID: 2514446244179388969, guid: fe5401c1dd7932844a13943c9134a2eb, type: 3}
-    Cost: 300
-    TurretLevel: 3
-    UpgradeCost: 100
-    MaxTurretLevel: 3
-  - Prefab: {fileID: 2157671470003670258, guid: 7deb7c88b12dcaf4f93235d6480eed06, type: 3}
-    Cost: 400
-    TurretLevel: 1
-    UpgradeCost: 400
-    MaxTurretLevel: 2
-  - Prefab: {fileID: 3775598704784854990, guid: 7c706ef20cdbe8741b64d6a30d11808e, type: 3}
-    Cost: 300
-    TurretLevel: 1
-    UpgradeCost: 200
-    MaxTurretLevel: 2
+  - {fileID: -363537687690160474, guid: b8f082d5cb0fec54bb7bac9eaef60054, type: 3}
+  - {fileID: 8201539278741065921, guid: 87ad2d2994f706d4d9d91002a2d70dd8, type: 3}
+  - {fileID: -652288403255953257, guid: fe5401c1dd7932844a13943c9134a2eb, type: 3}
+  - {fileID: 7659153163518789829, guid: 7c706ef20cdbe8741b64d6a30d11808e, type: 3}
+  - {fileID: 3400480891723444455, guid: 7deb7c88b12dcaf4f93235d6480eed06, type: 3}
   _turretsCost:
   - {fileID: 2117224829}
   - {fileID: 452224950}

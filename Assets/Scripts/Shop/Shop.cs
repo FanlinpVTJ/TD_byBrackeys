@@ -14,6 +14,7 @@ public class Shop : MonoBehaviour
     {
         for (int i = 0; i < _turretsCost.Length; i++)
         {
+            Debug.Log(_turretsBlueprints[i].Cost.ToString());
             _turretsCost[i].text = "$" + _turretsBlueprints[i].Cost.ToString();
         }
 
