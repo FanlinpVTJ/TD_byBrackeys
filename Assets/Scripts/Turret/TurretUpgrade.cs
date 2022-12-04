@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class TurretUpgrade : MonoBehaviour
@@ -11,8 +8,6 @@ public class TurretUpgrade : MonoBehaviour
     [SerializeField] private TurretNodeBuilder turretNodeBuilder;
     
     private TurretBlueprint turretBlueprint;
-    private TurretBlueprint UpgradePrefub;
-    
 
     public void Upgrade(TurretBlueprint turretBlueprint)
     {
@@ -43,6 +38,5 @@ public class TurretUpgrade : MonoBehaviour
         Destroy(turretNodeBuilder.Turret);
         turretNodeBuilder.SetTurretBlueprint(turretBlueprint.TurretToUpgrade);
         turretNodeBuilder.TurretBuilding();
-
     }
 }

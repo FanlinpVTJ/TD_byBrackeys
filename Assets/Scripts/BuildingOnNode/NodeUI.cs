@@ -13,17 +13,14 @@ public class NodeUI : MonoBehaviour
     [SerializeField] private int sellCoefficient = 2;
 
     private TurretNodeBuilder turretNodeBuilder;
-
-    private void Update()
-    {
-        transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
-    }
+    private NodeUITexts nodeUITexts;
 
     public void SetTarget(TurretNodeBuilder turretNodeBuilder)
     {
         gameObject.SetActive(true);
         this.turretNodeBuilder = turretNodeBuilder;
         transform.position = this.turretNodeBuilder.transform.position;
+        nodeUITexts.SetUpgradeAndSellCosts(turretNodeBuilder);
     }
 
     public void HideNodeUI()

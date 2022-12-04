@@ -23,6 +23,7 @@ public class Turret : MonoBehaviour
         StartCoroutine(TargetingEnemy());
         trigger = GetComponent<ITrigger>();
     }
+
     private void Update()
     {
         if (target != null)
@@ -39,6 +40,7 @@ public class Turret : MonoBehaviour
             ReleaseTrigger();
         }
     }
+
     private IEnumerator PullTrigger()
     {
         yield return null;
@@ -61,15 +63,12 @@ public class Turret : MonoBehaviour
         partToRotate.rotation = Quaternion.Slerp(yrotationTurret, yTargetRotation, speedRotationOfTurret * Time.deltaTime);
     }
 
-    //Да, шоб не лагало) Эвенты будут следующей иттерацией
     private IEnumerator TargetingEnemy()
     {
         while (true)
         {
             GameObject _nearestEnemy = null;
             var shortestDistance = _turretFireRange;
-            
-            //Да, нужно строитть систему эвентов для регуляции спавна и смерти, но я пока не владею этим
             GameObject[] targets = GameObject.FindGameObjectsWithTag(_tagToFind);
             
             foreach (var enemy in targets)
@@ -92,6 +91,7 @@ public class Turret : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

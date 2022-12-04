@@ -300,8 +300,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 979663359276310948, guid: de85591c7af1a0b4e8fc01369fe93fc5, type: 3}
-  fireRate: 2
-  bulletDamage: 50
+  startfireRate: 5
+  startbulletDamage: 50
 --- !u!114 &3400480891723444455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,6 +319,7 @@ MonoBehaviour:
   turretLevel: 1
   upgradeCost: 100
   maxThisTypeTurretLevel: 1
+  sellCostCoeff: 2
 --- !u!1 &3976510073009893832
 GameObject:
   m_ObjectHideFlags: 0

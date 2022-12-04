@@ -7,20 +7,23 @@ public class LaserShoot : MonoBehaviour, IDamageType
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private ParticleSystem laserDamageEffect;
     [SerializeField] private Light laserDamageLightEffect;
-    [SerializeField] private float laserDamage;
-    [SerializeField] private float laserSlowingFactor;
+    [SerializeField] private float startlaserDamage;
+    [SerializeField] private float startlaserSlowingFactor;
 
     private Transform[] firePointTransform;
     private UnitHealthSystem targetUnitHealthSystem;
     private EnemyMovement targetEnemyMovement;
     private Transform currentTargetTransform;
     private float currentDeltaTimeLaserDamage;
-
+    private float laserDamage;
+    private float laserSlowingFactor;
 
     private void Start()
     {
         laserDamageLightEffect.enabled = false;
         laserDamageEffect.Stop();
+        laserDamage = startlaserDamage;
+        laserSlowingFactor = startlaserSlowingFactor;
     }
 
     public void SetBulletTransform(Transform[] firePointTransform)
@@ -55,6 +58,7 @@ public class LaserShoot : MonoBehaviour, IDamageType
         currentDeltaTimeLaserDamage = laserDamage * Time.deltaTime;
         targetUnitHealthSystem.DealDamage(currentDeltaTimeLaserDamage);
     }
+
     private void TurnOnLineRenderer()
     {
         lineRenderer.enabled = true;

@@ -213,8 +213,8 @@ MonoBehaviour:
   lineRenderer: {fileID: 3863495720531740353}
   laserDamageEffect: {fileID: 2274978162730086003}
   laserDamageLightEffect: {fileID: 3802728223860346501}
-  laserDamage: 50
-  laserSlowingFactor: 50
+  startlaserDamage: 50
+  startlaserSlowingFactor: 50
 --- !u!114 &7659153163518789829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +232,7 @@ MonoBehaviour:
   turretLevel: 1
   upgradeCost: 100
   maxThisTypeTurretLevel: 1
+  sellCostCoeff: 2
 --- !u!1 &4487618312775123578
 GameObject:
   m_ObjectHideFlags: 0

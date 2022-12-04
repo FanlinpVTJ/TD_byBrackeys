@@ -1,33 +1,36 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletShoot : MonoBehaviour, IDamageType
 {
     [SerializeField] private GameObject bullet;
-    [SerializeField] private float fireRate;
-    [SerializeField] private float bulletDamage;
+    [SerializeField] private float startfireRate;
+    [SerializeField] private float startbulletDamage;
 
     private float fireCountdown;
     private Transform[] firePointTransform;
-    private bool isReload = false;
+    private bool IsReload = false;
     private UnitHealthSystem targetUnitHealthSystem;
     private Transform currentTargetTransform;
+    private float fireRate;
+    private float bulletDamage;
 
     private void Start()
     {
-        fireCountdown = fireRate;
+        fireCountdown = startfireRate;
+        fireRate = startfireRate;
+        bulletDamage = startbulletDamage;
     }
     private void Update()
     {
         if (fireCountdown <= 0)
         {
-            isReload = true;
+            IsReload = true;
             fireCountdown = fireRate;
         }
         else
         {
-            isReload = false;
+            IsReload = false;
         }
         fireCountdown -= Time.deltaTime;
     }
@@ -46,7 +49,7 @@ public class BulletShoot : MonoBehaviour, IDamageType
     }
     private IEnumerator ShootQueue()
     {
-        if (isReload)
+        if (IsReload)
         {
             foreach (var firePointTransform in firePointTransform)
             {

@@ -9,6 +9,8 @@ public class TurretNodeBuilder : MonoBehaviour
     public GameObject Turret { get; set; }
     public int TurretCost { get; private set; }
     public int TurretUpgradeCost { get; private set; }
+    public int TurretSellCost { get; private set; }
+
 
     private TurretBlueprint turretBlueprint;
     private TurretUpgrade turretUpgrade;
@@ -40,7 +42,6 @@ public class TurretNodeBuilder : MonoBehaviour
 
     public void TurretBuilding()
     {
-        Debug.Log("1");
         GameObject turret = Instantiate(turretBlueprint.gameObject, transform.position + turretOnNodeOffset,
             Quaternion.identity);
         GameObject _buitldEffect = Instantiate(buildEffectPrefab, transform.position + turretOnNodeOffset,
@@ -48,6 +49,7 @@ public class TurretNodeBuilder : MonoBehaviour
         Destroy(_buitldEffect, 2f);
         Turret = turret;
         TurretCost = turretBlueprint.Cost;
+        TurretSellCost = turretBlueprint.SellCost;
         TurretUpgradeCost = turretBlueprint.UpgradeCost;
     }
 
