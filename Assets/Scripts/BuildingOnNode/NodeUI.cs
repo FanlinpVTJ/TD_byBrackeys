@@ -11,9 +11,9 @@ public class NodeUI : MonoBehaviour
     public event Action<int> OnSellTurret;
     public event Action<int> OnUpgradeTurret;
     [SerializeField] private int sellCoefficient = 2;
+    [SerializeField] private NodeUITexts nodeUITexts;
 
     private TurretNodeBuilder turretNodeBuilder;
-    private NodeUITexts nodeUITexts;
 
     public void SetTarget(TurretNodeBuilder turretNodeBuilder)
     {
@@ -30,9 +30,8 @@ public class NodeUI : MonoBehaviour
 
     public void SellTurret()
     {
-        var sellCost = turretNodeBuilder.TurretCost / sellCoefficient;
-        OnSellTurret.Invoke(sellCost);
-        Destroy(turretNodeBuilder.Turret);
+        OnSellTurret.Invoke(turretNodeBuilder.TurretSellCost);
+        turretNodeBuilder.SellTurret();
         turretNodeBuilder =null;
         HideNodeUI();
     }

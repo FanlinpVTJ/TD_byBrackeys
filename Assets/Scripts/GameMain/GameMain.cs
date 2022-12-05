@@ -5,17 +5,27 @@ using UnityEngine;
 public class GameMain : MonoBehaviour
 {
     public bool IsGameEnded {get; private set;}
-    private GameOver gameOver;
-    private PlayerStats playerStats;
-   
-    private void Awake()
+    [SerializeField] private GameOver gameOver;
+    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private PauseMenu pauseMenu;
+    [SerializeField] private RetryButton retryButton;
+    [SerializeField] private MenuButton menuButton;
+
+    private void OnEnable()
     {
-        IsGameEnded = false;
-        gameOver = GetComponent<GameOver>();
-        playerStats = GetComponent<PlayerStats>();
+        gameOver.OnGameOver += SetPauseOrGameOverTimeScale;
+        retryButton.OnRetry += SetInGameTimeScale;
+        pauseMenu.OnPause += DoInGamePause;
+    }
+    private void OnDisable()
+    {
+        gameOver.OnGameOver -= SetPauseOrGameOverTimeScale;
+        retryButton.OnRetry -= SetInGameTimeScale;
+        pauseMenu.OnPause -= DoInGamePause;
     }
     private void Start()
     {
+        IsGameEnded = false;
         StartCoroutine(GameLoop());
     }
 
@@ -29,5 +39,23 @@ public class GameMain : MonoBehaviour
     {
         gameOver.GameEnd();
         IsGameEnded = true;
+    }
+
+    private void DoInGamePause(bool IsPause)
+    {
+        if (IsPause)
+            SetPauseOrGameOverTimeScale();
+        else
+            SetInGameTimeScale();
+    }
+
+    private void SetInGameTimeScale()
+    {
+        Time.timeScale = 1.0f;
+    }
+
+    private void SetPauseOrGameOverTimeScale()
+    {
+        Time.timeScale = 0.0f;
     }
 }

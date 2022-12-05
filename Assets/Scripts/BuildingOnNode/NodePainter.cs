@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class NodePainter : MonoBehaviour
 {
@@ -12,21 +14,45 @@ public class NodePainter : MonoBehaviour
     private Color startColor;
     private Renderer nodeRenderer;
     private TurretNodeBuilder turretBuildInput;
+    private bool IsMouseOnNode = false;
+
     private void Start()
     {
         turretBuildInput = GetComponent<TurretNodeBuilder>();
         nodeRenderer = GetComponent<Renderer>();
         startColor = nodeRenderer.material.color;
     }
+
+    private void Update()
+    {
+        if (IsMouseOnNode)
+        {
+            UpdateColor();
+        }
+    }
+
     private void OnMouseEnter()
     {
+        IsMouseOnNode=true;
+    }
+
+    private void OnMouseExit()
+    {
+        nodeRenderer.material.color = startColor;
+        IsMouseOnNode = false;
+    }
+
+    public void UpdateColor()
+    {
         if (EventSystem.current.IsPointerOverGameObject())
+        {
             return;
+        }
         if (!BuildingManager.Instance.CanBuild)
         {
             return;
         }
-        if (BuildingManager.Instance.HasMoney && BuildingManager.Instance.CanBuild && !turretBuildInput.Turret) 
+        if (BuildingManager.Instance.HasMoney && !turretBuildInput.Turret)
         {
             nodeRenderer.material.color = hoverColor;
         }
@@ -38,9 +64,5 @@ public class NodePainter : MonoBehaviour
         {
             nodeRenderer.material.color = notEnoughtMoneyColor;
         }
-    }
-    private void OnMouseExit()
-    {
-        nodeRenderer.material.color = startColor;
     }
 }
