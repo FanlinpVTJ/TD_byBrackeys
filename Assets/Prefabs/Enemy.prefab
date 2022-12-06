@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   costPlayerLivesOnEndPath: 1
-  maxSpeed: 15
+  maxSpeed: 100
 --- !u!114 &4253178331250873836
 MonoBehaviour:
   m_ObjectHideFlags: 0

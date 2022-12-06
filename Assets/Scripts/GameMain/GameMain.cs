@@ -15,12 +15,14 @@ public class GameMain : MonoBehaviour
     {
         gameOver.OnGameOver += SetPauseOrGameOverTimeScale;
         retryButton.OnRetry += SetInGameTimeScale;
+        menuButton.OnMenu += SetInGameTimeScale;
         pauseMenu.OnPause += DoInGamePause;
     }
     private void OnDisable()
     {
         gameOver.OnGameOver -= SetPauseOrGameOverTimeScale;
         retryButton.OnRetry -= SetInGameTimeScale;
+        menuButton.OnMenu -= SetInGameTimeScale;
         pauseMenu.OnPause -= DoInGamePause;
     }
     private void Start()
@@ -49,13 +51,13 @@ public class GameMain : MonoBehaviour
             SetInGameTimeScale();
     }
 
-    private void SetInGameTimeScale()
-    {
-        Time.timeScale = 1.0f;
-    }
-
     private void SetPauseOrGameOverTimeScale()
     {
         Time.timeScale = 0.0f;
+    }
+
+    private void SetInGameTimeScale()
+    {
+        Time.timeScale = 1.0f;
     }
 }

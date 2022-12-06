@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-
 //тут конечно говнище еще то, но как смог, вообще эта штука должна что:
 //принимать положение выделеной ноды, получать чертеж на апгрейд/продажу
 //иметь два метода и два эвента в них соответственно продажа или апгрейд
@@ -10,7 +9,6 @@ public class NodeUI : MonoBehaviour
 {
     public event Action<int> OnSellTurret;
     public event Action<int> OnUpgradeTurret;
-    [SerializeField] private int sellCoefficient = 2;
     [SerializeField] private NodeUITexts nodeUITexts;
 
     private TurretNodeBuilder turretNodeBuilder;

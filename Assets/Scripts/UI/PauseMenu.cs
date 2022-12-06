@@ -9,19 +9,21 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private RetryButton retryButton;
     [SerializeField] private MenuButton menuButton;
     [SerializeField] private ContinueButton continueButton;
+    [SerializeField] private EventMenuFromPause eventMenuButtonFromPause;
+    [SerializeField] private EventRetryFromPause eventRetryButtonFromPause;
 
 
     private void OnEnable()
     {
-        retryButton.OnRetry += PauseToggle;
-        menuButton.OnMenu += PauseToggle;
+        eventRetryButtonFromPause.OnRetryFromPause += PauseToggle;
+        eventMenuButtonFromPause.OnMenuFromPause += PauseToggle;
         continueButton.OnContinue += PauseToggle;
     }
 
     private void OnDisable()
     {
-        retryButton.OnRetry -= PauseToggle;
-        menuButton.OnMenu -= PauseToggle;
+        eventRetryButtonFromPause.OnRetryFromPause -= PauseToggle;
+        eventMenuButtonFromPause.OnMenuFromPause -= PauseToggle;
         continueButton.OnContinue -= PauseToggle;
     }
     void Update()
