@@ -9,6 +9,36 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 54a6e02e8f101234f852bd7446221a8d
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
+    path: Assets/Scenes/MenuLevelSelector.unity
+    guid: 5e0234ff161eb9b4cb751eb7a9b77904
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 103c0be5b70736d418e3b24f42d19f6a
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: 16449b7f810157d47ba728d596a7351b
+  - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: e8083d3bdda5944439cd16842dfcea0a
+  - enabled: 1
+    path: Assets/Scenes/Level 5.unity
+    guid: 8cd8dbfb1615a854397a91fd36e9844c
+  - enabled: 1
+    path: Assets/Scenes/Level 6.unity
+    guid: c9a3096e8913bb24eb6e7703a9730ca9
+  - enabled: 1
+    path: Assets/Scenes/Level 7.unity
+    guid: f2ea363736b548c489f86fb355fac3f5
+  - enabled: 1
+    path: Assets/Scenes/Level 8.unity
+    guid: 697c82284bf3e874284406ad034206b3
+  - enabled: 1
+    path: Assets/Scenes/Level 9.unity
+    guid: 1e0e227be39636247aa87780d78257dc
+  - enabled: 1
+    path: Assets/Scenes/Level 10.unity
+    guid: f8d2dbd208e2c934aba35770b751e778
   m_configObjects: {}

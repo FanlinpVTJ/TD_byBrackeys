@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameWin : MonoBehaviour
 {
@@ -8,14 +9,15 @@ public class GameWin : MonoBehaviour
     [SerializeField] private WaveSpawner waveSpawner;
     [SerializeField] private GameObject gameWinUI;
     [SerializeField] private TextMeshProUGUI gameWinWavesCountText;
+    [SerializeField] private SceneFading sceneFading;
 
     private void OnEnable()
     {
-        waveSpawner.OnAllWavesHaveDone += GameEnd;
+        waveSpawner.OnAllWavesHaveDone += ShowWinGameScreen;
     }
     private void OnDisable()
     {
-        waveSpawner.OnAllWavesHaveDone -= GameEnd;
+        waveSpawner.OnAllWavesHaveDone -= ShowWinGameScreen;
     }
 
     private void Start()
@@ -23,9 +25,15 @@ public class GameWin : MonoBehaviour
         gameWinUI.SetActive(false);
     }
 
-    public void GameEnd()
+    public void ShowWinGameScreen()
     {
         gameWinWavesCountText.text = waveSpawner.TextWaveIndex.ToString();
         gameWinUI.SetActive(true);       
     }
+
+    public void GoToNextScene()
+    {
+        sceneFading.RunFadeOutTo(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
 }

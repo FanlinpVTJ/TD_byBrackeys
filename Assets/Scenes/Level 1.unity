@@ -3520,7 +3520,7 @@ GameObject:
   - component: {fileID: 283469564}
   - component: {fileID: 283469568}
   m_Layer: 5
-  m_Name: RetryButton
+  m_Name: NextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3544,7 +3544,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -220, y: 170}
+  m_AnchoredPosition: {x: 220, y: 170}
   m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &283469564
@@ -3603,9 +3603,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 522445314}
-        m_TargetAssemblyTypeName: RetryButton, Assembly-CSharp
-        m_MethodName: Retry
+      - m_Target: {fileID: 522445316}
+        m_TargetAssemblyTypeName: GameWin, Assembly-CSharp
+        m_MethodName: GoToNextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7193,6 +7193,7 @@ MonoBehaviour:
   gameWin: {fileID: 522445316}
   playerStats: {fileID: 522445308}
   pauseMenu: {fileID: 522445312}
+  waveSpawner: {fileID: 522445305}
 --- !u!114 &522445310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7235,8 +7236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseUI: {fileID: 1875413628}
-  retryButton: {fileID: 522445314}
-  menuButton: {fileID: 522445313}
   continueButton: {fileID: 522445315}
   eventMenuButtonFromPause: {fileID: 894480082}
   eventRetryButtonFromPause: {fileID: 1153208783}
@@ -7294,6 +7293,7 @@ MonoBehaviour:
   waveSpawner: {fileID: 522445305}
   gameWinUI: {fileID: 1181985527}
   gameWinWavesCountText: {fileID: 1311884045}
+  sceneFading: {fileID: 612041258}
 --- !u!1 &531987437
 GameObject:
   m_ObjectHideFlags: 0
@@ -7811,7 +7811,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Retry
+  m_text: Next
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -11474,7 +11474,7 @@ GameObject:
   - component: {fileID: 850400428}
   - component: {fileID: 850400427}
   m_Layer: 5
-  m_Name: GameOverMessedge
+  m_Name: GameWinMessedge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14231,7 +14231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 220, y: 170}
+  m_AnchoredPosition: {x: -220, y: 170}
   m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1020930644
@@ -15707,7 +15707,7 @@ Animator:
   m_GameObject: {fileID: 1140690752}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 24d9b24cbd4f03a49ab45b9b2a85bb91, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2ee78f19c88581d4b81669c60bfc730f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 2
   m_ApplyRootMotion: 0
