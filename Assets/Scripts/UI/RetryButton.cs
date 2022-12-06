@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class RetryButton : MonoBehaviour
 {
-    public event Action OnRetry;
+    public event Action<bool> OnRetry;
 
     [SerializeField] private SceneFading sceneFading;
 
     public void Retry()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        OnRetry?.Invoke();
+    {        
+        sceneFading.RunFadeOutTo(SceneManager.GetActiveScene().buildIndex);
+        OnRetry.Invoke(false);
     }
 }

@@ -6,23 +6,16 @@ public class GameMain : MonoBehaviour
 {
     public bool IsGameEnded {get; private set;}
     [SerializeField] private GameOver gameOver;
+    [SerializeField] private GameWin gameWin;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private PauseMenu pauseMenu;
-    [SerializeField] private RetryButton retryButton;
-    [SerializeField] private MenuButton menuButton;
 
     private void OnEnable()
     {
-        gameOver.OnGameOver += SetPauseOrGameOverTimeScale;
-        retryButton.OnRetry += SetInGameTimeScale;
-        menuButton.OnMenu += SetInGameTimeScale;
         pauseMenu.OnPause += DoInGamePause;
     }
     private void OnDisable()
     {
-        gameOver.OnGameOver -= SetPauseOrGameOverTimeScale;
-        retryButton.OnRetry -= SetInGameTimeScale;
-        menuButton.OnMenu -= SetInGameTimeScale;
         pauseMenu.OnPause -= DoInGamePause;
     }
     private void Start()

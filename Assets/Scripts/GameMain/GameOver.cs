@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
-    public event Action OnGameOver;
-
     [SerializeField] private WaveSpawner waveSpawner;
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private TextMeshProUGUI gameOverWavesCountText;
@@ -18,8 +16,7 @@ public class GameOver : MonoBehaviour
     
     public void GameEnd()
     {
-        gameOverWavesCountText.text = waveSpawner.textWaveIndex.ToString();
+        gameOverWavesCountText.text = waveSpawner.TextWaveIndex.ToString();
         gameOverUI.SetActive(true);
-        OnGameOver.Invoke();
     }
 }

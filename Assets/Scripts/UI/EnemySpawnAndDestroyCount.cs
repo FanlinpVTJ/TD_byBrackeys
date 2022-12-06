@@ -6,6 +6,8 @@ public class EnemySpawnAndDestroyCount : MonoBehaviour
     [SerializeField] private TextMeshProUGUI UnitsLeft;
     [SerializeField] private WaveSpawner waveSpawner;
 
+    public int SpawnCount { get { return spawnCount; } }
+
     private int spawnCount;
 
 

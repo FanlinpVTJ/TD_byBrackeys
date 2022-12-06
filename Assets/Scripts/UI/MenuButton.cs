@@ -4,13 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
 {
-    public event Action OnMenu;
+    public event Action<bool> OnMenu;
 
     [SerializeField] private SceneFading sceneFading;
 
     public void ShowMenu()
     {
-        SceneManager.LoadScene(0);
-        OnMenu?.Invoke();
+        sceneFading.RunFadeOutTo(0);
+        OnMenu.Invoke(false);
     }
 }
