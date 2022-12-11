@@ -19,17 +19,15 @@ public class TurretUpgrade : MonoBehaviour
     {
         if (turretBlueprint.TurretLevel >= turretBlueprint.MaxThisTypeTurretLevel)
         {
-            Debug.Log(turretBlueprint.IDamageType);
             turretBlueprint.IDamageType.UpgradeTurret();
         }
         else
         {
-            Debug.Log("Upgrade with PREFAB");
-            UpgradeWithPrefub(turretBlueprint.TurretLevel);
+            UpgradeWithPrefub();
         }
     }
 
-    private void UpgradeWithPrefub(int turretLevel)
+    private void UpgradeWithPrefub()
     {
         if (!BuildingManager.Instance.HasMoneyToUpgrade)
         {
@@ -37,6 +35,7 @@ public class TurretUpgrade : MonoBehaviour
         }
         Destroy(turretNodeBuilder.Turret);
         turretNodeBuilder.SetTurretBlueprint(turretBlueprint.TurretToUpgrade);
+        Debug.Log(turretBlueprint.TurretToUpgrade);
         turretNodeBuilder.TurretBuilding();
     }
 }

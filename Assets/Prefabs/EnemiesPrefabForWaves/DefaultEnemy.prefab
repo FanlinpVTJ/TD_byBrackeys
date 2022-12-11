@@ -281,7 +281,6 @@ GameObject:
   - component: {fileID: 8128454814118356810}
   - component: {fileID: 484799945330297401}
   - component: {fileID: 2147099836}
-  - component: {fileID: 4253178331250873836}
   - component: {fileID: -2203493967346462057}
   - component: {fileID: 5333377719931368950}
   m_Layer: 0
@@ -399,19 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   costPlayerLivesOnEndPath: 1
-  maxSpeed: 100
---- !u!114 &4253178331250873836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8128454814118356809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155fb82fb95683e44b062049641ddbff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  maxSpeed: 10
 --- !u!114 &-2203493967346462057
 MonoBehaviour:
   m_ObjectHideFlags: 0

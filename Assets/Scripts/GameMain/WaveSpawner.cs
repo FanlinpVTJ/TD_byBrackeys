@@ -17,6 +17,7 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private EnemySpawnAndDestroyCount EnemyOnBoardCount;
     [SerializeField] private RetryButton retryButton;
     [SerializeField] private MenuButton menuButton;
+    [SerializeField] private EnemyContainer enemyContainer;
 
 
     public int TextWaveIndex { get { return textWaveIndex; } }
@@ -87,6 +88,7 @@ public class WaveSpawner : MonoBehaviour
         enemyMovement.SetWaypoints(waypoints);
         OnEnemySpawn.Invoke();
         enemySpawnAndDestroyCount.SetEnemyDeathAction(enemyHealthSystem);
+        enemyContainer.AddToList(enemyHealthSystem);
     }
 
     private void SetIsroundEnd(bool IsRoundEnd)

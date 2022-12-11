@@ -7090,6 +7090,7 @@ GameObject:
   - component: {fileID: 522445314}
   - component: {fileID: 522445313}
   - component: {fileID: 522445315}
+  - component: {fileID: 522445317}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -7134,6 +7135,7 @@ MonoBehaviour:
   EnemyOnBoardCount: {fileID: 522445311}
   retryButton: {fileID: 522445314}
   menuButton: {fileID: 522445313}
+  enemyContainer: {fileID: 522445317}
 --- !u!4 &522445306
 Transform:
   m_ObjectHideFlags: 0
@@ -7294,6 +7296,18 @@ MonoBehaviour:
   gameWinUI: {fileID: 1181985527}
   gameWinWavesCountText: {fileID: 1311884045}
   sceneFading: {fileID: 612041258}
+--- !u!114 &522445317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522445304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb56898c4f817044b806f4ef04bc3201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &531987437
 GameObject:
   m_ObjectHideFlags: 0

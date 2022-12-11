@@ -49,7 +49,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partToRotate: {fileID: 5458498299005516772}
-  _tagToFind: Enemy
   _turretFireRange: 15
   speedRotationOfTurret: 15
 --- !u!114 &6883152120314498538
@@ -81,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 8923650300499736398, guid: db610f3dffcf7a94885f419da53aee3b, type: 3}
   startfireRate: 0.5
-  startbulletDamage: 10
+  startbulletDamage: 20
 --- !u!114 &8201539278741065921
 MonoBehaviour:
   m_ObjectHideFlags: 0
