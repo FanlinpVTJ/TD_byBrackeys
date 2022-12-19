@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ad6db04fc145464386475a4dfc9aa1e, type: 3}
-  m_Name: TurretLevel 2
+  m_Name: MissleTurretLevel 1
   m_EditorClassIdentifier: 
-  turret: {fileID: 1051365672376138755, guid: 87ad2d2994f706d4d9d91002a2d70dd8, type: 3}
+  turret: {fileID: 1148905930992650987, guid: 7deb7c88b12dcaf4f93235d6480eed06, type: 3}
+  iconSprite: {fileID: 21300000, guid: 119866c54b9331341934cc70e7bbb0df, type: 3}
   cost: 100
   sellCostCoeff: 0.5
   fireRate: 2

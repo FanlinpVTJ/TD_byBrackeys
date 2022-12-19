@@ -4,6 +4,7 @@ using UnityEngine;
 public class TurretConfig : ScriptableObject
 {
     [SerializeField] private Turret turret;
+    [SerializeField] private Sprite iconSprite;
     [SerializeField] private int cost;
     [SerializeField] private float sellCostCoeff;
     [SerializeField] private float fireRate;
@@ -18,4 +19,5 @@ public class TurretConfig : ScriptableObject
     public float StartBulletDamage { get => startBulletDamage; }
     public float TurretFireRange { get => turretFireRange; }
     public float SpeedRotationOfTurret { get => speedRotationOfTurret; }
+    public Sprite IconSprite => iconSprite;
 }
