@@ -4,7 +4,7 @@ using UnityEngine;
 public class BulletShoot : MonoBehaviour, IDamageType
 {
     [SerializeField] private GameObject bullet;
-    [SerializeField] private float startfireRate;
+    [SerializeField] private float startFireRate;
     [SerializeField] private float startbulletDamage;
 
     private float fireCountdown;
@@ -17,8 +17,8 @@ public class BulletShoot : MonoBehaviour, IDamageType
 
     private void Start()
     {
-        fireCountdown = startfireRate;
-        fireRate = startfireRate;
+        fireCountdown = startFireRate;
+        fireRate = startFireRate;
         bulletDamage = startbulletDamage;
     }
     private void Update()
